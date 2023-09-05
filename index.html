@@ -291,7 +291,7 @@
         // Agregar nuevo mensaje al chat
         const nuevoMensaje = document.createElement('div');
         nuevoMensaje.classList.add('chat-message', 'user-message');
-        nuevoMensaje.innerHTML = `<p>Seleccionaste: ${textoOpcion}</p>`;
+        nuevoMensaje.innerHTML = `<p>${textoOpcion}</p>`;
         nuevoChatContainer.appendChild(nuevoMensaje);
 
         // Insertar el nuevo contenedor antes del contenedor de opciones
@@ -301,13 +301,17 @@
         opcionesSection.style.display = 'none';
         proveedoresLuz.style.display = 'block';
 
-        // Agregar el mensaje "¿Cuál es tu proveedor de energía actual? 😊"
-        const nuevoMensajeTexto = document.createElement('div');
-        nuevoMensajeTexto.classList.add('chat-message', 'user-message');
-        nuevoMensajeTexto.innerHTML = "<p>¿Cuál es tu proveedor de energía actual? 😊</p>";
+       // Agregar el mensaje "¿Cuál es tu proveedor de energía actual? 😊"
+const nuevoMensajeTexto = document.createElement('div');
+nuevoMensajeTexto.classList.add('chat-container'); // Agregar la clase 'chat-container'
+const nuevoMensajeInterno = document.createElement('div');
+nuevoMensajeInterno.classList.add('chat-message');
+nuevoMensajeInterno.innerHTML = "<p>¿Cuál es tu proveedor de energía actual? 😊</p>";
+nuevoMensajeTexto.appendChild(nuevoMensajeInterno);
 
-        // Insertar el nuevo mensaje del proveedor de energía
-        opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
+// Insertar el nuevo mensaje del proveedor de energía
+opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
+
     });
 });
 
