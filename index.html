@@ -166,7 +166,7 @@
         </div>
         <h1>Chat en Línea</h1>
     </header>
-    <main>
+     <main>
         <div class="chat-container">
             <div class="chat-message">
                 <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de energía más barata ⚡️</p>
@@ -240,11 +240,23 @@
 
     <script>
         const luzOption = document.getElementById('luz-option');
+        const gasOption = document.getElementById('gas-option');
+        const luzGasOption = document.getElementById('luz-gas-option');
+        const chatContainer = document.querySelector('.chat-container');
 
         luzOption.addEventListener('click', () => {
-            // Obtener el texto de la opción "Luz"
-            const luzText = luzOption.querySelector('span').textContent;
+            mostrarMensaje("¿Cuál es tu proveedor de energía actual? 😊");
+        });
 
+        gasOption.addEventListener('click', () => {
+            mostrarMensaje("¿Cuál es tu proveedor de gas actual? 😊");
+        });
+
+        luzGasOption.addEventListener('click', () => {
+            mostrarMensaje("¿Cuáles son tus proveedores de energía y gas actuales? 😊");
+        });
+
+        function mostrarMensaje(mensaje) {
             // Ocultar las opciones
             document.querySelector('.opciones').style.display = 'none';
 
@@ -252,12 +264,12 @@
             const proveedoresLuz = document.getElementById('proveedores-luz');
             proveedoresLuz.style.display = 'block';
 
-            // Agregar nuevo mensaje al chat con el texto de la opción seleccionada
+            // Agregar nuevo mensaje al chat
             const nuevoMensaje = document.createElement('div');
             nuevoMensaje.classList.add('chat-message', 'user-message');
-            nuevoMensaje.innerHTML = `<p>${luzText}</p>`;
-            document.querySelector('.chat-container').appendChild(nuevoMensaje);
-        });
+            nuevoMensaje.innerHTML = `<p>${mensaje}</p>`;
+            chatContainer.appendChild(nuevoMensaje);
+        }
     </script>
 </body>
 </html>
