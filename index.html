@@ -290,7 +290,7 @@
 
         // Crear un nuevo contenedor de chat para la opción seleccionada
         const nuevoChatContainer = document.createElement('div');
-        nuevoChatContainer.classList.add('chat-container');
+        nuevoChatContainer.classList.add('none');
 
         // Agregar nuevo mensaje al chat
         const nuevoMensaje = document.createElement('div');
@@ -318,6 +318,35 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
 
     });
 });
+
+        const proveedores = document.querySelectorAll('.proveedor');
+        const proveedoresLuz = document.getElementById('proveedores-luz');
+
+        proveedores.forEach(proveedor => {
+            proveedor.addEventListener('click', () => {
+                // Ocultar la sección de proveedores de luz
+                proveedoresLuz.style.display = 'none';
+
+                // Obtener el texto del proveedor clicado
+                const textoProveedor = proveedor.querySelector('span').textContent;
+
+                // Crear un nuevo elemento .none2
+                const none2Element = document.createElement('div');
+                none2Element.classList.add('none2');
+
+                // Crear un nuevo elemento .chat-message .user-message y agregar el texto del proveedor
+                const chatMessageElement = document.createElement('div');
+                chatMessageElement.classList.add('chat-message', 'user-message');
+                chatMessageElement.innerHTML = `<p>${textoProveedor}</p>`;
+
+                // Adjuntar el elemento .chat-message .user-message al elemento .none2
+                none2Element.appendChild(chatMessageElement);
+
+                // Insertar el elemento .none2 antes del formulario
+                const formulario = document.getElementById('formulario-proveedor');
+                formulario.parentElement.insertBefore(none2Element, formulario);
+            });
+        });
 
     </script>
 </body>
