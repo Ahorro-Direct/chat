@@ -170,7 +170,7 @@
 }
 
 .formulario input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #ccc;
@@ -188,6 +188,31 @@
 
 .formulario button:hover {
     background-color: #2980b9;
+}
+
+        .calcular-ahorro {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Estilos para la barra de progreso */
+.progress-container {
+    margin-top: 20px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #3498db;
+    transition: width 5s linear;
 }
 
     </style>
@@ -279,6 +304,15 @@
         <input type="text" placeholder="Empresa" required>
         <button>Enviar</button>
     </section>
+    <section class="calcular-ahorro chat-container" id="calcular-ahorro">
+    <h2>Calcular Ahorro</h2>
+    <label for="factura-file">Añade Tu última factura</label>
+    <input type="file" id="factura-file" accept=".pdf" required>
+    <button id="calcular-button">Calculadora de Ahorro</button>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+</section>
     <script>
       const opciones = document.querySelectorAll('.opcion');
         const proveedoresLuz = document.getElementById('proveedores-luz');
@@ -349,6 +383,46 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
                 formularioProveedor.parentElement.insertBefore(none2Element, formularioProveedor);
             });
         });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const facturaFileInput = document.getElementById('factura-file');
+    const calcularButton = document.getElementById('calcular-button');
+    const progressBar = document.getElementById('progress-bar');
+
+    calcularButton.addEventListener('click', function () {
+        // Simular la carga de la factura
+        simulateInvoiceUpload();
+    });
+
+    // Función para simular la carga de la factura
+    function simulateInvoiceUpload() {
+        calcularButton.disabled = true;
+        facturaFileInput.disabled = true;
+
+        // Simular la carga durante 5 segundos
+        let progress = 0;
+        const interval = setInterval(function () {
+            progress += 1;
+            progressBar.style.width = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(function () {
+                    resetProgress();
+                }, 1000); // Esperar 1 segundo antes de reiniciar la barra de progreso
+            }
+        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
+    }
+
+    // Función para reiniciar la barra de progreso
+    function resetProgress() {
+        progressBar.style.width = '0';
+        calcularButton.disabled = false;
+        facturaFileInput.disabled = false;
+    }
+});
+
 
     </script>
 </body>
