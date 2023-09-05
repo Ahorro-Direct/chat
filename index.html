@@ -276,37 +276,33 @@
         <button>Enviar</button>
     </section>
     <script>
-        const luzOption = document.getElementById('luz-option');
-        const gasOption = document.getElementById('gas-option');
-        const luzGasOption = document.getElementById('luz-gas-option');
+       const opciones = document.querySelectorAll('.opcion');
+    const proveedoresLuz = document.getElementById('proveedores-luz');
+    const opcionesSection = document.querySelector('.opciones');
 
-        luzOption.addEventListener('click', () => {
-            mostrarMensaje("¿Cuál es tu proveedor de energía actual? 😊");
+    opciones.forEach(opcion => {
+        opcion.addEventListener('click', () => {
+            const textoOpcion = opcion.querySelector('span').textContent;
+            mostrarMensaje(`Seleccionaste: ${textoOpcion}`);
+            opcionesSection.style.display = 'none';
+            proveedoresLuz.style.display = 'block';
         });
+    });
 
-        gasOption.addEventListener('click', () => {
-            mostrarMensaje("¿Cuál es tu proveedor de gas actual? 😊");
-        });
+    function mostrarMensaje(mensaje) {
+        // Crear un nuevo contenedor de chat
+        const nuevoChatContainer = document.createElement('div');
+        nuevoChatContainer.classList.add('chat-container');
 
-        luzGasOption.addEventListener('click', () => {
-            mostrarMensaje("¿Cuáles son tus proveedores de energía y gas actuales? 😊");
-        });
+        // Agregar nuevo mensaje al chat
+        const nuevoMensaje = document.createElement('div');
+        nuevoMensaje.classList.add('chat-message', 'user-message');
+        nuevoMensaje.innerHTML = `<p>${mensaje}</p>`;
+        nuevoChatContainer.appendChild(nuevoMensaje);
 
-        function mostrarMensaje(mensaje) {
-            // Crear un nuevo contenedor de chat
-            const nuevoChatContainer = document.createElement('div');
-            nuevoChatContainer.classList.add('chat-container');
-
-            // Agregar nuevo mensaje al chat
-            const nuevoMensaje = document.createElement('div');
-            nuevoMensaje.classList.add('chat-message', 'user-message');
-            nuevoMensaje.innerHTML = `<p>${mensaje}</p>`;
-            nuevoChatContainer.appendChild(nuevoMensaje);
-
-            // Insertar el nuevo contenedor antes del contenedor de opciones
-            const opcionesSection = document.querySelector('.opciones');
-            opcionesSection.parentElement.insertBefore(nuevoChatContainer, opcionesSection);
-        }
+        // Insertar el nuevo contenedor antes del contenedor de opciones
+        opcionesSection.parentElement.insertBefore(nuevoChatContainer, opcionesSection);
+    }
     </script>
 </body>
 </html>
