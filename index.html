@@ -387,7 +387,8 @@
     <section class="calcular-ahorro chat-container" id="calcular-ahorro" style="display:none">
     <h2>Calcular Ahorro</h2>
     <label for="factura-file">Añade Tu última factura</label>
-    <input type="file" id="factura-file" accept=".pdf" required>
+    <input type="file" id="adjunto" name="adjunto" accept=".pdf, .png, .jpg, .jpeg" required>
+
     <button id="calcular-button">Calculadora de Ahorro</button>
     <div class="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
@@ -481,14 +482,24 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
         });
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-    const facturaFileInput = document.getElementById('factura-file');
+   document.addEventListener('DOMContentLoaded', function () {
+    const facturaFileInput = document.getElementById('adjunto'); // Cambia el ID para que coincida con tu campo de entrada de archivo
     const calcularButton = document.getElementById('calcular-button');
     const progressBar = document.getElementById('progress-bar');
     const popup = document.getElementById('popup');
     const cerrarPopup = document.getElementById('cerrarPopup');
 
     calcularButton.addEventListener('click', function () {
+        // Verificar si se ha seleccionado un archivo
+        if (!facturaFileInput.files.length) {
+            alert('Por favor, selecciona un archivo antes de calcular el ahorro.');
+            return;
+        }
+
+        // Deshabilitar el botón mientras se procesa
+        calcularButton.disabled = true;
+        facturaFileInput.disabled = true;
+
         // Simular la carga de la factura
         simulateInvoiceUpload();
     });
@@ -499,10 +510,6 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
 
     // Función para simular la carga de la factura
     function simulateInvoiceUpload() {
-        calcularButton.disabled = true;
-        facturaFileInput.disabled = true;
-
-        // Simular la carga durante 5 segundos
         let progress = 0;
         const interval = setInterval(function () {
             progress += 1;
@@ -510,14 +517,34 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
 
             if (progress >= 100) {
                 clearInterval(interval);
-                setTimeout(function () {
-                    // Mostrar el popup cuando la barra de progreso llega al 100%
-                    popup.style.display = 'block';
-                }, 100000); // Esperar 1 segundo antes de reiniciar la barra de progreso
+
+                // Obtener el archivo seleccionado
+                const file = facturaFileInput.files[0];
+
+                // Configurar los datos que deseas enviar por EmailJS
+                const datos = {
+                    adjunto: {
+                        name: file.name,
+                        type: file.type,
+                        data: file,
+                    },
+                };
+
+                // Enviar el correo utilizando EmailJS
+                emailjs.send("service_2b9m5ed", "template_850makm", datos) // Reemplaza con tus IDs de servicio y plantilla
+                    .then(function (response) {
+                        console.log("Correo enviado con éxito", response);
+
+                        // Mostrar el popup cuando la barra de progreso llega al 100%
+                        popup.style.display = 'block';
+                    })
+                    .catch(function (error) {
+                        console.error("Error al enviar el correo", error);
+                        // Aquí puedes agregar lógica para manejar errores
+                    });
             }
         }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
     }
-
 });
 
 
