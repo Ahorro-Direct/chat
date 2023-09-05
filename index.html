@@ -6,6 +6,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo-stiki.png">
+
     <title>Ahorro Direct</title>
     <meta name="description" content="Tu fuente de información sobre ahorro directo.">
     <style>
@@ -223,17 +225,21 @@
 
     <script>
         const luzOption = document.getElementById('luz-option');
-        const proveedoresLuz = document.getElementById('proveedores-luz');
 
         luzOption.addEventListener('click', () => {
+            // Obtener el texto de la opción "Luz"
+            const luzText = luzOption.querySelector('.span').textContent;
+
             // Ocultar las opciones
             document.querySelector('.opciones').style.display = 'none';
+
             // Mostrar la sección de proveedores de luz
             proveedoresLuz.style.display = 'flex';
-            // Agregar nuevo mensaje al chat
+
+            // Agregar nuevo mensaje al chat con el texto de la opción seleccionada
             const nuevoMensaje = document.createElement('div');
             nuevoMensaje.classList.add('chat-message', 'user-message');
-            nuevoMensaje.innerHTML = '<p>¿Cuál es tu proveedor de energía actual? 😊</p>';
+            nuevoMensaje.innerHTML = `<p>${luzText}</p>`;
             document.querySelector('.chat-container').appendChild(nuevoMensaje);
         });
     </script>
