@@ -244,6 +244,8 @@
     transition: width 5s linear;
 }
 
+        
+
     </style>
 </head>
 <body>
@@ -335,7 +337,13 @@
         <button id="enviarFormulario">Enviar</button>
     </form>
 </section>
-
+<div id="formulario-enviado" style="display: none;">
+        <div class="chat-container">
+            <div class="chat-message">
+                <p>Formulario Enviado ✔️</p>
+            </div>
+        </div>
+    </div>
     <section class="calcular-ahorro chat-container" id="calcular-ahorro">
     <h2>Calcular Ahorro</h2>
     <label for="factura-file">Añade Tu última factura</label>
@@ -486,7 +494,13 @@ document.querySelector("#miFormulario").addEventListener("submit", function (eve
     emailjs.send("service_2b9m5ed", "template_850makm", datos) // Reemplaza con tus IDs de servicio y plantilla
         .then(function (response) {
             console.log("Correo enviado con éxito", response);
-            // Aquí puedes agregar lógica adicional, como mostrar un mensaje de éxito o redirigir al usuario
+             // Oculta el formulario
+            const formularioProveedor = document.querySelector("#formulario-proveedor");
+            formularioProveedor.style.display = "none";
+
+            // Muestra el mensaje de confirmación
+            const formularioEnviado = document.querySelector("#formulario-enviado");
+            formularioEnviado.style.display = "block";
         })
         .catch(function (error) {
             console.error("Error al enviar el correo", error);
