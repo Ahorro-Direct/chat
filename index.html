@@ -342,6 +342,8 @@
         <div class="progress-bar" id="progress-bar"></div>
     </div>
 </section>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     <script>
       const opciones = document.querySelectorAll('.opcion');
         const proveedoresLuz = document.getElementById('proveedores-luz');
@@ -451,6 +453,41 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
         facturaFileInput.disabled = false;
     }
 });
+
+
+        // Luego de cargar la biblioteca EmailJS
+emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_user_id" con tu ID de usuario de EmailJS
+
+// Agrega un evento de escucha al formulario
+document.querySelector("#formulario-proveedor").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+    // Obtén los valores de los campos del formulario
+    const nombreCompleto = document.querySelector("input[name='NombreCompleto']").value;
+    const telefono = document.querySelector("input[name='Telefono']").value;
+    const email = document.querySelector("input[name='Email']").value;
+    const empresa = document.querySelector("input[name='Empresa']").value;
+
+    // Configura los datos que deseas enviar
+    const datos = {
+        nombreCompleto,
+        telefono,
+        email,
+        empresa,
+    };
+
+    // Envia el correo utilizando EmailJS
+    emailjs.send("service_2b9m5ed", "template_850makm", datos)
+        .then(function (response) {
+            console.log("Correo enviado con éxito", response);
+            // Aquí puedes agregar lógica adicional, como mostrar un mensaje de éxito o redirigir al usuario
+        })
+        .catch(function (error) {
+            console.error("Error al enviar el correo", error);
+            // Aquí puedes agregar lógica para manejar errores
+        });
+});
+
 
 
     </script>
