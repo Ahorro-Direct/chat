@@ -244,7 +244,47 @@
     transition: width 1s linear;
 }
 
-        
+   .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.popup img {
+    max-width: 100%;
+    height: auto;
+}
+
+.popup button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.popup button:hover {
+    background-color: #2980b9;
+}
+     
 
     </style>
 </head>
@@ -353,6 +393,16 @@
         <div class="progress-bar" id="progress-bar"></div>
     </div>
 </section>
+
+    <div id="popup" class="popup">
+    <div class="popup-content">
+        <img src="imagen.jpg" alt="Oferta Energética">
+        <h1>Enhorabuena tenemos una oferta energética 🎉🎉</h1>
+        <p>Nuestro Asesor Iván especialista energético se pondrá en contacto contigo</p>
+        <button id="cerrarPopup">Cerrar</button>
+    </div>
+</div>
+
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
 
@@ -431,14 +481,20 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
         });
 
 
-        document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
     const facturaFileInput = document.getElementById('factura-file');
     const calcularButton = document.getElementById('calcular-button');
     const progressBar = document.getElementById('progress-bar');
+    const popup = document.getElementById('popup');
+    const cerrarPopup = document.getElementById('cerrarPopup');
 
     calcularButton.addEventListener('click', function () {
         // Simular la carga de la factura
         simulateInvoiceUpload();
+    });
+
+    cerrarPopup.addEventListener('click', function () {
+        popup.style.display = 'none';
     });
 
     // Función para simular la carga de la factura
@@ -456,18 +512,15 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
                 clearInterval(interval);
                 setTimeout(function () {
                     resetProgress();
-                }, 10000); // Esperar 1 segundo antes de reiniciar la barra de progreso
+                    // Mostrar el popup cuando la barra de progreso llega al 100%
+                    popup.style.display = 'block';
+                }, 100000); // Esperar 1 segundo antes de reiniciar la barra de progreso
             }
-        }, 100); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
+        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
     }
 
-    // Función para reiniciar la barra de progreso
-    function resetProgress() {
-        progressBar.style.width = '0';
-        calcularButton.disabled = false;
-        facturaFileInput.disabled = false;
-    }
 });
+
 
 
 
