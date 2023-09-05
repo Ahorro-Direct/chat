@@ -204,7 +204,7 @@
 }
 
 .calcular-ahorro input[type="file"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -241,7 +241,7 @@
     width: 0;
     height: 100%;
     background-color: #3498db;
-    transition: width 5s linear;
+    transition: width 1s linear;
 }
 
         
@@ -456,9 +456,9 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
                 clearInterval(interval);
                 setTimeout(function () {
                     resetProgress();
-                }, 1000); // Esperar 1 segundo antes de reiniciar la barra de progreso
+                }, 10000); // Esperar 1 segundo antes de reiniciar la barra de progreso
             }
-        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
+        }, 100); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
     }
 
     // Función para reiniciar la barra de progreso
