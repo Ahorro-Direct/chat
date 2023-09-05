@@ -320,11 +320,15 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
 });
 
         const proveedores = document.querySelectorAll('.proveedor');
+        const formularioProveedor = document.getElementById('formulario-proveedor'); // Obtener el formulario
 
         proveedores.forEach(proveedor => {
             proveedor.addEventListener('click', () => {
                 // Ocultar la sección de proveedores de luz
                 proveedoresLuz.style.display = 'none';
+
+                // Mostrar el formulario
+                formularioProveedor.style.display = 'block';
 
                 // Obtener el texto del proveedor clicado
                 const textoProveedor = proveedor.querySelector('span').textContent;
@@ -342,8 +346,7 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
                 none2Element.appendChild(chatMessageElement);
 
                 // Insertar el elemento .none2 antes del formulario
-                const formulario = document.getElementById('formulario-proveedor');
-                formulario.parentElement.insertBefore(none2Element, formulario);
+                formularioProveedor.parentElement.insertBefore(none2Element, formularioProveedor);
             });
         });
 
