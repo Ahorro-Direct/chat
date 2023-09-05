@@ -90,13 +90,21 @@
     margin: 10px;
     background-color: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Agregar estilos al hacer hover */
+.opcion:hover {
+    transform: scale(1.05); /* Aumentar el tamaño al hacer hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregar sombra al hacer hover */
 }
 
 .icono img {
-    width: 50px; /* Ajusta el tamaño del icono según sea necesario */
-    height: 50px; /* Ajusta el tamaño del icono según sea necesario */
+    width: 50px;
+    height: 50px;
     margin-bottom: 10px;
 }
+
 
          @media (min-width: 768px) {
             header {
