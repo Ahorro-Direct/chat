@@ -276,11 +276,9 @@
         <button>Enviar</button>
     </section>
     <script>
-       const luzOption = document.getElementById('luz-option');
+        const luzOption = document.getElementById('luz-option');
         const gasOption = document.getElementById('gas-option');
         const luzGasOption = document.getElementById('luz-gas-option');
-        const formularioProveedor = document.getElementById('formulario-proveedor');
-        const proveedoresLuz = document.getElementById('proveedores-luz');
 
         luzOption.addEventListener('click', () => {
             mostrarMensaje("¿Cuál es tu proveedor de energía actual? 😊");
@@ -292,15 +290,6 @@
 
         luzGasOption.addEventListener('click', () => {
             mostrarMensaje("¿Cuáles son tus proveedores de energía y gas actuales? 😊");
-        });
-
-        // Mostrar el formulario cuando se hace clic en un proveedor
-        const proveedores = document.querySelectorAll('.proveedor');
-        proveedores.forEach(proveedor => {
-            proveedor.addEventListener('click', () => {
-                formularioProveedor.style.display = 'block';
-                proveedoresLuz.style.display = 'none';
-            });
         });
 
         function mostrarMensaje(mensaje) {
