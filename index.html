@@ -331,7 +331,7 @@
         <input type="tel" placeholder="Teléfono" required>
         <input type="email" placeholder="Email" required>
         <input type="text" placeholder="Empresa" required>
-        <button>Enviar</button>
+        <button id="enviarFormulario">Enviar</button>
     </section>
     <section class="calcular-ahorro chat-container" id="calcular-ahorro">
     <h2>Calcular Ahorro</h2>
@@ -459,8 +459,7 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
 emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_user_id" con tu ID de usuario de EmailJS
 
 // Agrega un evento de escucha al formulario
-document.querySelector("#formulario-proveedor").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+document.getElementById('enviarFormulario').addEventListener("click", function () {
 
     // Obtén los valores de los campos del formulario
     const nombreCompleto = document.querySelector("input[name='NombreCompleto']").value;
