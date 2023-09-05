@@ -326,13 +326,16 @@
         </div>
     </section>
 <section class="formulario chat-container" id="formulario-proveedor">
-        <h2>Completa la información requerida:</h2>
-        <input type="text" placeholder="Nombre Completo" required>
-        <input type="tel" placeholder="Teléfono" required>
-        <input type="email" placeholder="Email" required>
-        <input type="text" placeholder="Empresa" required>
+    <h2>Completa la información requerida:</h2>
+    <form id="miFormulario">
+        <input type="text" placeholder="Nombre Completo" id="nombre" required>
+        <input type="tel" placeholder="Teléfono" id="telefono" required>
+        <input type="email" placeholder="Email" id="email" required>
+        <input type="text" placeholder="Empresa" id="empresa" required>
         <button id="enviarFormulario">Enviar</button>
-    </section>
+    </form>
+</section>
+
     <section class="calcular-ahorro chat-container" id="calcular-ahorro">
     <h2>Calcular Ahorro</h2>
     <label for="factura-file">Añade Tu última factura</label>
@@ -343,7 +346,11 @@
     </div>
 </section>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
 
+                // Luego de cargar la biblioteca EmailJS
+emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_user_id" con tu ID de usuario de EmailJS
+    </script>
     <script>
       const opciones = document.querySelectorAll('.opcion');
         const proveedoresLuz = document.getElementById('proveedores-luz');
@@ -455,17 +462,17 @@ opcionesSection.parentElement.insertBefore(nuevoMensajeTexto, opcionesSection);
 });
 
 
-        // Luego de cargar la biblioteca EmailJS
-emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_user_id" con tu ID de usuario de EmailJS
 
-// Agrega un evento de escucha al formulario
-document.getElementById('enviarFormulario').addEventListener("click", function () {
+
+   // Agrega un evento de escucha al formulario
+document.querySelector("#miFormulario").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
     // Obtén los valores de los campos del formulario
-    const nombreCompleto = document.querySelector("input[name='NombreCompleto']").value;
-    const telefono = document.querySelector("input[name='Telefono']").value;
-    const email = document.querySelector("input[name='Email']").value;
-    const empresa = document.querySelector("input[name='Empresa']").value;
+    const nombreCompleto = document.querySelector("#nombre").value;
+    const telefono = document.querySelector("#telefono").value;
+    const email = document.querySelector("#email").value;
+    const empresa = document.querySelector("#empresa").value;
 
     // Configura los datos que deseas enviar
     const datos = {
@@ -476,7 +483,7 @@ document.getElementById('enviarFormulario').addEventListener("click", function (
     };
 
     // Envia el correo utilizando EmailJS
-    emailjs.send("service_2b9m5ed", "template_850makm", datos)
+    emailjs.send("tu_servicio_id", "tu_plantilla_id", datos) // Reemplaza con tus IDs de servicio y plantilla
         .then(function (response) {
             console.log("Correo enviado con éxito", response);
             // Aquí puedes agregar lógica adicional, como mostrar un mensaje de éxito o redirigir al usuario
@@ -486,6 +493,7 @@ document.getElementById('enviarFormulario').addEventListener("click", function (
             // Aquí puedes agregar lógica para manejar errores
         });
 });
+
 
 
 
