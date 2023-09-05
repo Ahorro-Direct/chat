@@ -6,6 +6,17 @@
     <title>Ahorro Direct</title>
     <meta name="description" content="Tu fuente de información sobre ahorro directo.">
     <style>
+
+        body {
+    background-color: #e5ddd5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
     header {
     background-color: #3498db;
     color: #fff;
@@ -62,19 +73,42 @@
     font-size: 16px;
 }
 
+
+        .opciones {
+    display: flex;
+    justify-content: space-between;
+}
+
+.opcion {
+    width: 30%;
+    text-align: center;
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.icono img {
+    width: 50px; /* Ajusta el tamaño del icono según sea necesario */
+    height: 50px; /* Ajusta el tamaño del icono según sea necesario */
+    margin-bottom: 10px;
+}
+
 </style>
 </head>
 <body>
      <header>
         <div id="user-status">
-            <img src="icono-conectado.png" alt="Usuario Conectado">
+            <img src="asesor-energetico.jpg" alt="Usuario Conectado">
             <p>Conectado</p>
         </div>
         <h1>Chat en Línea</h1>
     </header>
     <main>
     <div class="chat-container">
-        <div class="chat-message user-message">
+        <div class="chat-message">
             <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de energía más barata ⚡️</p>
         </div>
         <div class="chat-message">
@@ -82,6 +116,26 @@
         </div>
     </div>
 </main>
+<section class="opciones">
+    <div class="opcion">
+        <div class="icono">
+            <img src="icono-luz.png" alt="Luz">
+        </div>
+        <span>Luz</span>
+    </div>
+    <div class="opcion">
+        <div class="icono">
+            <img src="icono-gas.png" alt="Gas">
+        </div>
+        <span>Gas</span>
+    </div>
+    <div class="opcion">
+        <div class="icono">
+            <img src="icono-luz-gas.png" alt="Luz + Gas">
+        </div>
+        <span>Luz + Gas</span>
+    </div>
+</section>
 
 </body>
 </html>
