@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <title>Ahorro Direct</title>
     <meta name="description" content="Tu fuente de información sobre ahorro directo.">
     <style>
-
+        /* Estilos generales */
         body {
-    background-color: #e5ddd5;
-    font-family: 'Varela Round', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
-     header {
+            background-color: #e5ddd5;
+            font-family: 'Varela Round', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* Estilos para el encabezado */
+        header {
             background-color: #3498db;
             color: #fff;
             padding: 10px;
@@ -27,103 +29,111 @@
             text-align: center;
         }
 
-#user-status {
-    display: flex;
-    align-items: center;
-}
-
-#user-status img {
-    width: 50px;
-    height: 50px;
-    margin-right: 5px;
-    border-radius: 30px;
-}
-
-/* Estilos para el contenedor del chat */
-.chat-container {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 80%;
-    margin: 20px auto;
-}
-
-/* Estilos para los mensajes */
-.chat-message {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-}
-
-.user-message {
-    background-color: #dcf8c6; /* Color de fondo para mensajes del usuario */
-    float: right;
-}
-
-/* Estilos para los íconos de emoticonos */
-.chat-message img {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-}
-
-/* Estilos para el texto del mensaje */
-.chat-message p {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-}
-
-
-        .opciones {
-    display: flex;
-    justify-content: space-between;
-}
-
-.opcion {
-    width: 30%;
-    text-align: center;
-    border: 1px solid red;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-}
-
-/* Agregar estilos al hacer hover */
-.opcion:hover {
-    transform: scale(1.05); /* Aumentar el tamaño al hacer hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregar sombra al hacer hover */
-}
-
-.icono img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-}
-
-
-         @media (min-width: 768px) {
-            header {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
-
-            h1 {
-                margin: 0;
-                font-size: 24px;
-                margin-top: 0;
-            }
+        #user-status {
+            display: flex;
+            align-items: center;
         }
 
-</style>
+        #user-status img {
+            width: 50px;
+            height: 50px;
+            margin-right: 5px;
+            border-radius: 30px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        /* Estilos para el chat */
+        .chat-container {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+            margin: 20px auto;
+        }
+
+        .chat-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #dcf8c6; /* Color de fondo para mensajes del usuario */
+            float: right;
+        }
+
+        .chat-message img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .chat-message p {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        /* Estilos para las opciones */
+        .opciones {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .opcion {
+            width: 30%;
+            text-align: center;
+            border: 1px solid red;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        /* Agregar estilos al hacer hover */
+        .opcion:hover {
+            transform: scale(1.05); /* Aumentar el tamaño al hacer hover */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregar sombra al hacer hover */
+        }
+
+        .icono img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para la sección de proveedores (inicialmente oculta) */
+        .proveedores {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .proveedor {
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .proveedor img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-     <header>
+    <header>
         <div id="user-status">
             <img src="asesor-energetico.jpg" alt="Usuario Conectado">
             <h1>Iván, Asesor Energético</h1>
@@ -131,35 +141,101 @@
         <h1>Chat en Línea</h1>
     </header>
     <main>
-    <div class="chat-container">
-        <div class="chat-message">
-            <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de energía más barata ⚡️</p>
+        <div class="chat-container">
+            <div class="chat-message">
+                <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de energía más barata ⚡️</p>
+            </div>
+            <div class="chat-message">
+                <p>¿En qué quieres ahorrar? 😊</p>
+            </div>
         </div>
-        <div class="chat-message">
-            <p>¿En qué quieres ahorrar? 😊</p>
+    </main>
+    <section class="opciones">
+        <div class="opcion" id="luz-option">
+            <div class="icono">
+                <img src="energia.png" alt="Luz">
+            </div>
+            <span>Luz</span>
         </div>
-    </div>
-</main>
-<section class="opciones">
-    <div class="opcion">
-        <div class="icono">
-            <img src="energia.png" alt="Luz">
+        <div class="opcion">
+            <div class="icono">
+                <img src="fuego.png" alt="Gas">
+            </div>
+            <span>Gas</span>
         </div>
-        <span>Luz</span>
-    </div>
-    <div class="opcion">
-        <div class="icono">
-            <img src="fuego.png" alt="Gas">
+        <div class="opcion">
+            <div class="icono">
+                <img src="energiaplus.png" alt="Luz + Gas">
+            </div>
+            <span>Luz + Gas</span>
         </div>
-        <span>Gas</span>
-    </div>
-    <div class="opcion">
-        <div class="icono">
-            <img src="energiaplus.png" alt="Luz + Gas">
+    </section>
+    <section class="proveedores" id="proveedores-luz">
+        <div class="proveedor">
+            <div class="icono">
+                <img src="iberdrola.png" alt="Iberdrola">
+            </div>
+            <span>Iberdrola</span>
         </div>
-        <span>Luz + Gas</span>
-    </div>
-</section>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="endesa.png" alt="Endesa">
+            </div>
+            <span>Endesa</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="naturgy.png" alt="Naturgy">
+            </div>
+            <span>Naturgy</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="repsol.png" alt="Repsol">
+            </div>
+            <span>Repsol</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="gana-energia.png" alt="Gana Energía">
+            </div>
+            <span>Gana Energía</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="sweno.png" alt="Sweno">
+            </div>
+            <span>Sweno</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="totalenergies.png" alt="Totalenergies">
+            </div>
+            <span>Totalenergies</span>
+        </div>
+        <div class="proveedor">
+            <div class="icono">
+                <img src="otro.png" alt="Otro">
+            </div>
+            <span>Otro</span>
+        </div>
+    </section>
 
+    <script>
+        const luzOption = document.getElementById('luz-option');
+        const proveedoresLuz = document.getElementById('proveedores-luz');
+
+        luzOption.addEventListener('click', () => {
+            // Ocultar las opciones
+            document.querySelector('.opciones').style.display = 'none';
+            // Mostrar la sección de proveedores de luz
+            proveedoresLuz.style.display = 'flex';
+            // Agregar nuevo mensaje al chat
+            const nuevoMensaje = document.createElement('div');
+            nuevoMensaje.classList.add('chat-message', 'user-message');
+            nuevoMensaje.innerHTML = '<p>¿Cuál es tu proveedor de energía actual? 😊</p>';
+            document.querySelector('.chat-container').appendChild(nuevoMensaje);
+        });
+    </script>
 </body>
 </html>
