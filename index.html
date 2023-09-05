@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorro Direct</title>
+    <meta name="description" content="Tu fuente de información sobre ahorro directo.">
+    <style>
+    header {
+    background-color: #3498db;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+#user-status {
+    display: flex;
+    align-items: center;
+}
+
+#user-status img {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+/* Estilos para el contenedor del chat */
+.chat-container {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+/* Estilos para los mensajes */
+.chat-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    max-width: 70%;
+}
+
+.user-message {
+    background-color: #dcf8c6; /* Color de fondo para mensajes del usuario */
+    float: right;
+}
+
+/* Estilos para los íconos de emoticonos */
+.chat-message img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Estilos para el texto del mensaje */
+.chat-message p {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+     <header>
+        <div id="user-status">
+            <img src="icono-conectado.png" alt="Usuario Conectado">
+            <p>Conectado</p>
+        </div>
+        <h1>Chat en Línea</h1>
+    </header>
+    <main>
+    <div class="chat-container">
+        <div class="chat-message user-message">
+            <p>Hola 👋 Vamos a analizar juntos tu situación para proponerte la oferta de energía más barata ⚡️</p>
+        </div>
+        <div class="chat-message">
+            <p>¿En qué quieres ahorrar? 😊</p>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
