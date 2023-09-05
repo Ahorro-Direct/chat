@@ -344,7 +344,7 @@
             </div>
         </div>
     </div>
-    <section class="calcular-ahorro chat-container" id="calcular-ahorro">
+    <section class="calcular-ahorro chat-container" id="calcular-ahorro" style="display:none">
     <h2>Calcular Ahorro</h2>
     <label for="factura-file">Añade Tu última factura</label>
     <input type="file" id="factura-file" accept=".pdf" required>
@@ -501,6 +501,9 @@ document.querySelector("#miFormulario").addEventListener("submit", function (eve
             // Muestra el mensaje de confirmación
             const formularioEnviado = document.querySelector("#formulario-enviado");
             formularioEnviado.style.display = "block";
+
+            const calculadoraAhorro = document.getElementById('calcular-ahorro');
+            calculadoraAhorro.style.display = "block";
         })
         .catch(function (error) {
             console.error("Error al enviar el correo", error);
