@@ -156,6 +156,36 @@
     margin-bottom: 10px;
 }
 
+        /* Estilos para el formulario */
+.formulario {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    
+    padding: 10px;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formulario button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formulario button:hover {
+    background-color: #2980b9;
+}
+
     </style>
 </head>
 <body>
@@ -237,12 +267,20 @@
             <span>Otro</span>
         </div>
     </section>
-
+<section class="formulario" id="formulario-proveedor">
+        <h2>Completa la información requerida:</h2>
+        <input type="text" placeholder="Nombre Completo" required>
+        <input type="tel" placeholder="Teléfono" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Empresa" required>
+        <button>Enviar</button>
+    </section>
     <script>
-        const luzOption = document.getElementById('luz-option');
+       const luzOption = document.getElementById('luz-option');
         const gasOption = document.getElementById('gas-option');
         const luzGasOption = document.getElementById('luz-gas-option');
-        const chatContainer = document.querySelector('.chat-container');
+        const formularioProveedor = document.getElementById('formulario-proveedor');
+        const proveedoresLuz = document.getElementById('proveedores-luz');
 
         luzOption.addEventListener('click', () => {
             mostrarMensaje("¿Cuál es tu proveedor de energía actual? 😊");
@@ -256,19 +294,29 @@
             mostrarMensaje("¿Cuáles son tus proveedores de energía y gas actuales? 😊");
         });
 
-        function mostrarMensaje(mensaje) {
-            // Ocultar las opciones
-            document.querySelector('.opciones').style.display = 'none';
+        // Mostrar el formulario cuando se hace clic en un proveedor
+        const proveedores = document.querySelectorAll('.proveedor');
+        proveedores.forEach(proveedor => {
+            proveedor.addEventListener('click', () => {
+                formularioProveedor.style.display = 'block';
+                proveedoresLuz.style.display = 'none';
+            });
+        });
 
-            // Mostrar la sección de proveedores de luz
-            const proveedoresLuz = document.getElementById('proveedores-luz');
-            proveedoresLuz.style.display = 'block';
+        function mostrarMensaje(mensaje) {
+            // Crear un nuevo contenedor de chat
+            const nuevoChatContainer = document.createElement('div');
+            nuevoChatContainer.classList.add('chat-container');
 
             // Agregar nuevo mensaje al chat
             const nuevoMensaje = document.createElement('div');
             nuevoMensaje.classList.add('chat-message', 'user-message');
             nuevoMensaje.innerHTML = `<p>${mensaje}</p>`;
-            chatContainer.appendChild(nuevoMensaje);
+            nuevoChatContainer.appendChild(nuevoMensaje);
+
+            // Insertar el nuevo contenedor antes del contenedor de opciones
+            const opcionesSection = document.querySelector('.opciones');
+            opcionesSection.parentElement.insertBefore(nuevoChatContainer, opcionesSection);
         }
     </script>
 </body>
