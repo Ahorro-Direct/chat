@@ -215,7 +215,7 @@
 
 <div class="form-section">
         <h2>Formulario de Contacto</h2>
-      <form>
+   <form id="miFormulario">
     <label for="telefono">¿Alguna duda? Te llamamos</label>
     <input id="telefono" maxlength="9" type="tel" placeholder="Introduce tu teléfono" required>
 
@@ -229,7 +229,6 @@
     <!-- Agregar un elemento para mostrar el mensaje de error -->
     <div id="errorTelefono" style="color: red;"></div>
 </form>
-
     </div>
 
 <div class="section2">
@@ -274,22 +273,23 @@
         startCountdown();
 
 
-  // Obtener el elemento de entrada de teléfono
+ // Obtener el formulario
+    const formulario = document.getElementById('miFormulario');
+
+    // Obtener el campo de entrada de teléfono
     const telefonoInput = document.getElementById('telefono');
 
     // Obtener el elemento del mensaje de error
     const errorTelefono = document.getElementById('errorTelefono');
 
-    // Agregar un event listener para el evento "input" que se dispara cuando se escribe en el campo
-    telefonoInput.addEventListener('input', function() {
-        // Eliminar cualquier espacio en blanco del valor del campo
-        this.value = this.value.replace(/\s/g, '');
-
+    // Agregar un event listener para el evento "submit" del formulario
+    formulario.addEventListener('submit', function(event) {
         // Verificar si el valor ingresado contiene exactamente 9 dígitos
-        if (!/^\d{9}$/.test(this.value)) {
-            errorTelefono.textContent = 'Utiliza un teléfono válido con 9 dígitos sin prefijo';
+        if (!/^\d{9}$/.test(telefonoInput.value)) {
+            errorTelefono.textContent = 'Utiliza un teléfono válido';
+            event.preventDefault(); // Evitar el envío del formulario si hay un error
         } else {
-            errorTelefono.textContent = ''; // Limpiar el mensaje de error
+            errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
         }
     });
     </script>
