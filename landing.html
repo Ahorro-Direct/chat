@@ -256,6 +256,11 @@
  <footer class="footer">
         <p>&copy; Ahorro Direct marca registrada 2023</p>
     </footer>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_usuario_emailjs" con tu ID de usuario de EmailJS
+</script>
+
     <script>
         
 
@@ -268,17 +273,27 @@
     // Obtener el elemento del mensaje de error
     const errorTelefono = document.getElementById('errorTelefono');
 
-    // Agregar un event listener para el evento "submit" del formulario
-    formulario.addEventListener('submit', function(event) {
-        // Verificar si el valor ingresado contiene exactamente 9 dígitos
-        if (!/^\d{9}$/.test(telefonoInput.value)) {
-            errorTelefono.textContent = 'Utiliza un teléfono válido';
-            event.preventDefault(); // Evitar el envío del formulario si hay un error
-        } else {
-            errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
-        }
-    });
+   // Agregar un event listener para el evento "submit" del formulario
+formulario.addEventListener('submit', function(event) {
+    // Verificar si el valor ingresado contiene exactamente 9 dígitos
+    if (!/^\d{9}$/.test(telefonoInput.value)) {
+        errorTelefono.textContent = 'Utiliza un teléfono válido';
+        event.preventDefault(); // Evitar el envío del formulario si hay un error
+    } else {
+        errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
 
+        // Enviar el correo utilizando EmailJS
+        emailjs.send("service_2b9m5ed", "template_850makm", {
+            telefono: telefonoInput.value
+        })
+        .then(function(response) {
+            console.log("Correo enviado con éxito:", response);
+        })
+        .catch(function(error) {
+            console.error("Error al enviar el correo:", error);
+        });
+    }
+});
 
 
 function formatoFecha(fecha) {
