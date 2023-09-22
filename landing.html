@@ -238,7 +238,7 @@
 <div class="section2">
         <div class="box-section" style="z-index: 2;">
             <h2 style="width:90%; margin: 20px auto;">
-               Escríbenos ahora para <br><br> <span class="highlighted-text"> Ahorrar300€ </span><br><br> Anuales
+               Escríbenos ahora para <br><br> <span class="highlighted-text"> Ahorrar 300€ </span><br><br> Anuales
             </h2>
             <a href="https://api.whatsapp.com/send?phone=616219596&amp;text=Quiero%20más%20información%20de%20la%20fibra%20y%20móvil%20de%20FibraDirect" class="whatsapp-button">
                 <i class="fab fa-whatsapp whatsapp-icon"></i> Hablemos Ahora
@@ -305,24 +305,16 @@ function formatoFecha(fecha) {
 }
 
 let fecha = new Date(); // Fecha actual
-var diaSemana = fecha.getDay(); // 0 = domingo, 1 = lunes, etc.
 
-// Si es viernes, establecer la fecha de entrega al martes de la semana siguiente
-if (diaSemana === 5) {
-    fecha.setDate(fecha.getDate() + 4); // Sumar 4 días para llegar al martes
-} else if (diaSemana === 6) {
-    fecha.setDate(fecha.getDate() + 3);
-} else if (diaSemana === 0) {
-    fecha.setDate(fecha.getDate() + 2);
-} else {
-    fecha.setDate(fecha.getDate() + 1); // Sumar 1 día para llegar al día siguiente
-}
+// Suma 2 días a la fecha actual
+fecha.setDate(fecha.getDate() + 2);
 
 var fechaEntrega = fecha;
 var fechaSimplificada = formatoFecha(fechaEntrega);
 
 // Actualiza el contenido del span con la fecha de entrega
 document.getElementById("pedido").textContent = "Sólo disponible hasta " + fechaSimplificada;
+
 
     </script>
 </body>
