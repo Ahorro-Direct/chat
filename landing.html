@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorro Direct</title>
+    <style>
+        /* Estilos para el header */
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+
+        .phone {
+                font-size: 10px;
+    border: 1px solid orange;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para la sección de cuenta regresiva */
+        .countdown {
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 24px;
+        }
+
+        /* Estilos para la sección */
+        .section {
+            background-image: url(fondofibra.jpeg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: white;
+            height: 400px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Pseudo-elemento ::before para la capa oscura opaca */
+        .section::before {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.5); /* Capa oscura opaca */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        /* Estilos para el botón de WhatsApp */
+        .whatsapp-button {
+            background-color: #05AC49; /* Color de fondo verde */
+            color: #fff; /* Texto blanco */
+            padding: 10px 20px; /* Espacio alrededor del botón */
+            text-decoration: none; /* Quita el subrayado del enlace */
+            border-radius: 5px; /* Bordes redondeados */
+                box-shadow: 0px 0px 10px 6px #05AC49;
+            display: inline-flex; /* Para que el ícono y el texto estén en línea */
+            align-items: center; /* Centra verticalmente el contenido */
+        }
+
+        /* Estilos para el icono de WhatsApp */
+        .whatsapp-icon {
+            font-size: 24px; /* Tamaño del ícono */
+            margin-right: 10px; /* Espacio entre el ícono y el texto */
+        }
+
+        /* Estilos para el texto con fondo amarillo */
+        .highlighted-text {
+            background: #ffe200; /* Fondo amarillo */
+            color: #000; /* Texto negro */
+            display: inline; /* Para que el fondo amarillo solo cubra el texto */
+            padding: 5px; /* Espacio alrededor del texto con fondo amarillo */
+        }
+
+
+   /* Estilos para la sección */
+        .section2 {
+            background-image: url(mobilefibra.jpeg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: white;
+            height: 600px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        /* Pseudo-elemento ::before para la capa oscura opaca */
+        .section2::before {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.5); /* Capa oscura opaca */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+  /* Estilos para la sección de formulario */
+        .form-section {
+            background-color: black; /* Fondo negro */
+            color: white; /* Texto en blanco */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 1.5rem -0.5rem #000; /* Sombra */
+        }
+
+        /* Estilos para el formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Estilos para el label */
+        label {
+            margin-top: 10px;
+        }
+
+        /* Estilos para el input */
+        input {
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+        }
+
+        /* Estilos para el botón */
+        button {
+            background-color: green; /* Fondo verde */
+            color: white; /* Texto en blanco */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Estilos para el checkbox */
+        input[type="checkbox"] {
+            margin-top: 10px;
+        }
+
+
+ /* Estilos para el cuadro de texto y botón */
+        .box-section {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+/* Estilos para la imagen */
+        .box-imagen img {
+            max-width: 300px; /* Ancho máximo de 300px para la imagen */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="ahorrodirect.png" alt="AhorroDirect" class="logo">
+        <p>
+            Teléfono: <a href="tel:+34616219596" class="phone">616 219 596</a>
+        </p>
+    </div>
+    <div class="countdown">
+        <p style="font-size: 15px; margin:0">Oferta Válida hasta finalizar el contador <span id="countdown"></span></p>
+    </div>
+    <div class="section">
+        <div class="box-section" style="z-index: 2;">
+            <h1  style="width:90%; margin: 20px auto;">
+                ¿PAGAS DE MÁS POR TU FIBRA Y <span class="highlighted-text">MÓVIL</span>?
+            </h1>
+            <a href="https://api.whatsapp.com/send?phone=616219596&amp;text=Quiero%20más%20información%20de%20la%20fibra%20y%20móvil%20de%20FibraDirect" class="whatsapp-button">
+                <i class="fab fa-whatsapp whatsapp-icon"></i> Hablemos Ahora
+            </a>
+        </div>
+    </div>
+
+<div class="form-section">
+        <h2>Formulario de Contacto</h2>
+        <form>
+            <label for="telefono">¿Alguna duda? Te llamamos</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Introduce tu teléfono" required>
+
+            <button type="submit">LLÁMAME GRATIS</button>
+
+            <label>
+                <input type="checkbox" name="politica" required>
+                He leído y acepto la política de privacidad y cookies
+            </label>
+        </form>
+    </div>
+
+<div class="section2">
+        <div class="box-section" style="z-index: 2;">
+            <h1 style="width:90%; margin: 20px auto;">
+               Escríbenos ahora y a tu Pack de Fibra y Móvil le incluimos una línea móvil extra totalmente <span class="highlighted-text">GRATIS</span>
+            </h1>
+            <a href="https://api.whatsapp.com/send?phone=616219596&amp;text=Quiero%20más%20información%20de%20la%20fibra%20y%20móvil%20de%20FibraDirect" class="whatsapp-button">
+                <i class="fab fa-whatsapp whatsapp-icon"></i> Hablemos Ahora
+            </a>
+        </div>
+       <div class="box-imagen" style="z-index: 2;">
+            <img src="mobileoferta.png" alt="Oferta Móvil" style="max-width: 300px;">
+        </div>
+    </div>
+    <script>
+        // Función para iniciar la cuenta regresiva
+        function startCountdown() {
+            var countdownElement = document.getElementById("countdown");
+            var totalTime = 5 * 60; // 5 minutos en segundos
+
+            function updateCountdown() {
+                var minutes = Math.floor(totalTime / 60);
+                var seconds = totalTime % 60;
+
+                countdownElement.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+                if (totalTime === 0) {
+                    // Cuando llega a 0, reiniciar la cuenta regresiva
+                    totalTime = 5 * 60;
+                } else {
+                    totalTime--;
+                }
+            }
+
+            // Actualizar la cuenta regresiva cada segundo
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Iniciar la cuenta regresiva cuando se carga la página
+        startCountdown();
+    </script>
+</body>
+</html>
