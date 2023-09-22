@@ -290,6 +290,7 @@ telefonoInput.addEventListener('input', function(event) {
 
 // Agregar un event listener para el evento "submit" del formulario
 formulario.addEventListener('submit', function(event) {
+event.preventDefault();
     // Verificar si el valor ingresado contiene exactamente 9 dígitos
     if (!/^\d{9}$/.test(telefonoInput.value)) {
         errorTelefono.textContent = 'Utiliza un teléfono válido';
