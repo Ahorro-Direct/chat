@@ -199,6 +199,10 @@
             Teléfono: <a href="tel:+34616219596" class="phone">616 219 596</a>
         </p>
     </div>
+    <div class="oferta">
+    <p>Sólo hasta el <span id="pedido">[Aquí aparecerá el contador]</span></p>
+</div>
+
     <div class="countdown">
         <p style="font-size: 15px; margin:0">Oferta Válida hasta finalizar el contador <span id="countdown"></span></p>
     </div>
@@ -292,6 +296,34 @@
             errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
         }
     });
+
+
+
+function formatoFecha(fecha) {
+    var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
+    return fecha.toLocaleDateString('es-ES', opciones);
+}
+
+let fecha = new Date(); // Fecha actual
+var diaSemana = fecha.getDay(); // 0 = domingo, 1 = lunes, etc.
+
+// Si es viernes, establecer la fecha de entrega al martes de la semana siguiente
+if (diaSemana === 5) {
+    fecha.setDate(fecha.getDate() + 4); // Sumar 4 días para llegar al martes
+} else if (diaSemana === 6) {
+    fecha.setDate(fecha.getDate() + 3);
+} else if (diaSemana === 0) {
+    fecha.setDate(fecha.getDate() + 2);
+} else {
+    fecha.setDate(fecha.getDate() + 1); // Sumar 1 día para llegar al día siguiente
+}
+
+var fechaEntrega = fecha;
+var fechaSimplificada = formatoFecha(fechaEntrega);
+
+// Actualiza el contenido del span con la fecha de entrega
+document.getElementById("pedido").textContent = "Sólo disponible hasta " + fechaSimplificada;
+
     </script>
 </body>
 </html>
