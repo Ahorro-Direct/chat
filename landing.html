@@ -273,17 +273,17 @@
     // Obtener el elemento del mensaje de error
     const errorTelefono = document.getElementById('errorTelefono');
 
-   // Agregar un event listener para el evento "submit" del formulario
+// Agregar un event listener para el evento "submit" del formulario
 formulario.addEventListener('submit', function(event) {
-    // Verificar si el valor ingresado contiene exactamente 9 dígitos
-    if (!/^\d{9}$/.test(telefonoInput.value)) {
+    // Verificar si el valor ingresado contiene exactamente 9 dígitos y no contiene espacios en blanco
+    if (!/^\d{9}$/.test(telefonoInput.value) || /\s/.test(telefonoInput.value)) {
         errorTelefono.textContent = 'Utiliza un teléfono válido';
         event.preventDefault(); // Evitar el envío del formulario si hay un error
     } else {
         errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
 
         // Enviar el correo utilizando EmailJS
-        emailjs.send("service_2b9m5ed", "template_850makm", {
+        emailjs.send("tu_servicio_emailjs", "tu_plantilla_emailjs", {
             telefono: telefonoInput.value
         })
         .then(function(response) {
@@ -294,6 +294,7 @@ formulario.addEventListener('submit', function(event) {
         });
     }
 });
+
 
 
 function formatoFecha(fecha) {
