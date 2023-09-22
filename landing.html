@@ -215,9 +215,9 @@
 
 <div class="form-section">
         <h2>Formulario de Contacto</h2>
-       <form>
+      <form>
     <label for="telefono">¿Alguna duda? Te llamamos</label>
-    <input id="telefono" maxlength="9" type="tel" pattern="[0-9]{9}" placeholder="Introduce tu teléfono" required>
+    <input id="telefono" maxlength="9" type="tel" placeholder="Introduce tu teléfono" required>
 
     <button type="submit">LLÁMAME GRATIS</button>
 
@@ -225,6 +225,9 @@
         <input type="checkbox" name="politica" required>
         He leído y acepto la política de privacidad y cookies
     </label>
+
+    <!-- Agregar un elemento para mostrar el mensaje de error -->
+    <div id="errorTelefono" style="color: red;"></div>
 </form>
 
     </div>
@@ -274,10 +277,20 @@
   // Obtener el elemento de entrada de teléfono
     const telefonoInput = document.getElementById('telefono');
 
+    // Obtener el elemento del mensaje de error
+    const errorTelefono = document.getElementById('errorTelefono');
+
     // Agregar un event listener para el evento "input" que se dispara cuando se escribe en el campo
     telefonoInput.addEventListener('input', function() {
         // Eliminar cualquier espacio en blanco del valor del campo
         this.value = this.value.replace(/\s/g, '');
+
+        // Verificar si el valor ingresado contiene exactamente 9 dígitos
+        if (!/^\d{9}$/.test(this.value)) {
+            errorTelefono.textContent = 'Utiliza un teléfono válido';
+        } else {
+            errorTelefono.textContent = ''; // Limpiar el mensaje de error
+        }
     });
     </script>
 </body>
