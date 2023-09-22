@@ -190,6 +190,15 @@
         .box-imagen img {
             max-width: 300px; /* Ancho máximo de 300px para la imagen */
         }
+
+/* Estilos para el footer */
+.footer {
+    background-color: #333; /* Color de fondo del footer */
+    color: #fff; /* Color del texto en el footer */
+    text-align: center; /* Alineación del texto al centro */
+    padding: 10px 0; /* Espaciado interno del footer (arriba y abajo: 10px, izquierda y derecha: 0) */
+}
+
     </style>
 </head>
 <body>
@@ -199,8 +208,8 @@
             Teléfono: <a href="tel:+34616219596" class="phone">616 219 596</a>
         </p>
     </div>
-    <div class="oferta">
-        <p style="font-size: 15px; margin:0">Oferta Válida hasta  <span id="pedido"></span></p>
+    <div class="countdown">
+        <p style="font-size: 15px; margin:0">OFERTA ÚNICA E IRREPETIBLE VÁLIDO HASTA <span id="pedido"></span></p>
     </div>
     <div class="section">
         <div class="box-section" style="z-index: 2;">
@@ -244,34 +253,11 @@
             <img src="mobileoferta.png" alt="Oferta Móvil" style="max-width: 300px;">
         </div>
     </div>
+ <footer class="footer">
+        <p>&copy; Ahorro Direct marca registrada 2023</p>
+    </footer>
     <script>
-        // Función para iniciar la cuenta regresiva
-        function startCountdown() {
-            var countdownElement = document.getElementById("countdown");
-            var totalTime = 5 * 60; // 5 minutos en segundos
-
-            function updateCountdown() {
-                var minutes = Math.floor(totalTime / 60);
-                var seconds = totalTime % 60;
-
-                countdownElement.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-
-                if (totalTime === 0) {
-                    // Cuando llega a 0, reiniciar la cuenta regresiva
-                    totalTime = 5 * 60;
-                } else {
-                    totalTime--;
-                }
-            }
-
-            // Actualizar la cuenta regresiva cada segundo
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        }
-
-        // Iniciar la cuenta regresiva cuando se carga la página
-        startCountdown();
-
+        
 
  // Obtener el formulario
     const formulario = document.getElementById('miFormulario');
