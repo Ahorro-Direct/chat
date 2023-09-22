@@ -269,6 +269,16 @@
 
         // Iniciar la cuenta regresiva cuando se carga la página
         startCountdown();
+
+
+  // Obtener el elemento de entrada de teléfono
+    const telefonoInput = document.getElementById('telefono');
+
+    // Agregar un event listener para el evento "input" que se dispara cuando se escribe en el campo
+    telefonoInput.addEventListener('input', function() {
+        // Eliminar cualquier espacio en blanco del valor del campo
+        this.value = this.value.replace(/\s/g, '');
+    });
     </script>
 </body>
 </html>
