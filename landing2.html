@@ -269,10 +269,11 @@ form button {
     </div>
   <div id="calculadora">
            <div class="video-container">
-                <video autoplay muted loop>
-                    <source src="ahorro-paso1.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de videos.
-                </video>
+               <video autoplay controls loop>
+                <source src="ahorro-paso1.mp4" type="video/mp4">
+                <source src="ahorro-paso1.webm" type="video/webm">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
             </div>
         <h2>¿Cuál es tu consumo?</h2>
         <p>Rellena el siguiente formulario</p>
@@ -296,10 +297,11 @@ form button {
 
     
     <div class="datos" style="display: none;">
-        <video autoplay muted loop>
-            <source src="ahorro-paso2.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de videos.
-        </video>
+       <video autoplay controls loop>
+                <source src="ahorro-paso2.mp4" type="video/mp4">
+                <source src="ahorro-paso2.webm" type="video/webm">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
         <form>
             <label for="nombre">Nombre Completo:</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -316,10 +318,11 @@ form button {
 
 
     <section class="calcular-ahorro chat-container" id="calcular-ahorro" style="display: none">
-         <video autoplay muted loop>
-            <source src="ahorro-paso2.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de videos.
-        </video>
+        <video autoplay controls loop>
+                <source src="ahorro-paso3.mp4" type="video/mp4">
+                <source src="ahorro-paso3.webm" type="video/webm">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
     <h2>Obtener Propuesta</h2>
     <label for="factura-file">Añade Tu última factura</label>
     <input type="file" id="adjunto" name="adjunto" accept=".pdf, .png, .jpg, .jpeg" required="">
@@ -366,6 +369,42 @@ var fechaSimplificada = formatoFecha(fechaEntrega);
 // Actualiza el contenido del span con la fecha de entrega
 document.getElementById("pedido").textContent = "Sólo disponible hasta " + fechaSimplificada;
 
+
+        // CALCULO AHORRO
+
+        // Agrega un evento de escucha al botón "Continuar"
+document.querySelector("#calculadora button").addEventListener("click", function () {
+    // Obtén los valores de los campos del formulario
+    const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
+    const costoElectricidad = parseFloat(document.getElementById("costo-electricidad").value);
+    const consumoGas = parseFloat(document.getElementById("consumo-gas").value);
+    const costoGas = parseFloat(document.getElementById("costo-gas").value);
+
+    // Calcula el ahorro
+    const ahorroElectricidad = consumoElectricidad * costoElectricidad;
+    const ahorroGas = consumoGas * costoGas;
+    const ahorroTotal = ahorroElectricidad + ahorroGas;
+
+    // Crea un objeto con los datos del formulario
+    const datosFormulario = {
+        consumoElectricidad,
+        costoElectricidad,
+        consumoGas,
+        costoGas,
+        ahorroTotal
+    };
+
+    // Convierte el objeto a JSON y guárdalo en localStorage con la clave "datos"
+    localStorage.setItem("datos", JSON.stringify(datosFormulario));
+
+      // Ocultar el formulario de la calculadora y mostrar el div de datos
+    document.getElementById("calculadora").style.display = "none";
+    document.querySelector(".datos").style.display = "block";
+    
+});
+
+        // DATOS
+
 function enviarFormulario() {
             // Obtén los valores del formulario de datos
             const nombreCompleto = document.querySelector("#nombre").value;
@@ -390,6 +429,8 @@ function enviarFormulario() {
             const calcularAhorroSection = document.querySelector("#calcular-ahorro");
             calcularAhorroSection.style.display = "block";
         }
+
+// ARCHIVO Y EMAIL
 
         function enviarCorreo() {
             // Obtiene los datos del formulario de datos desde localStorage
