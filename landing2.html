@@ -162,6 +162,59 @@ form button {
 }
 
 
+        .calcular-ahorro h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.calcular-ahorro label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.calcular-ahorro input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.calcular-ahorro button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.calcular-ahorro button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para la barra de progreso */
+.progress-container {
+    margin-top: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #3498db;
+    transition: width 1s linear;
+}
+
 
     </style>
 </head>
@@ -223,6 +276,22 @@ form button {
         </form>
     </div>
 
+
+    <section class="calcular-ahorro chat-container" id="calcular-ahorro" style="display: none">
+         <video autoplay muted loop>
+            <source src="ahorro-paso2.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos.
+        </video>
+    <h2>Obtener Propuesta</h2>
+    <label for="factura-file">Añade Tu última factura</label>
+    <input type="file" id="adjunto" name="adjunto" accept=".pdf, .png, .jpg, .jpeg" required="">
+
+    <button id="calcular-button">Calculadora de Ahorro</button>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+</section>
+
  <footer class="footer">
         <p>&copy; Ahorro Direct marca registrada 2023</p>
     </footer>
@@ -267,6 +336,116 @@ var fechaSimplificada = formatoFecha(fechaEntrega);
 // Actualiza el contenido del span con la fecha de entrega
 document.getElementById("pedido").textContent = "Sólo disponible hasta " + fechaSimplificada;
 
+
+//FORMULARIOS
+
+ document.addEventListener('DOMContentLoaded', function () {
+    const facturaFileInput = document.getElementById('adjunto'); // Cambia el ID para que coincida con tu campo de entrada de archivo
+    const calcularButton = document.getElementById('calcular-button');
+    const progressBar = document.getElementById('progress-bar');
+    const popup = document.getElementById('popup');
+    const cerrarPopup = document.getElementById('cerrarPopup');
+
+    calcularButton.addEventListener('click', function () {
+        // Verificar si se ha seleccionado un archivo
+        if (!facturaFileInput.files.length) {
+            alert('Por favor, selecciona un archivo antes de calcular el ahorro.');
+            return;
+        }
+
+        // Deshabilitar el botón mientras se procesa
+        calcularButton.disabled = true;
+        facturaFileInput.disabled = true;
+
+        // Simular la carga de la factura
+        simulateInvoiceUpload();
+    });
+
+    cerrarPopup.addEventListener('click', function () {
+        popup.style.display = 'none';
+    });
+
+    // Función para simular la carga de la factura
+    function simulateInvoiceUpload() {
+        let progress = 0;
+        const interval = setInterval(function () {
+            progress += 1;
+            progressBar.style.width = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+
+                // Obtener el archivo seleccionado
+                const file = facturaFileInput.files[0];
+
+                // Configurar los datos que deseas enviar por EmailJS
+                const datos = {
+                    adjunto: {
+                        name: file.name,
+                        type: file.type,
+                        data: file,
+                    },
+                };
+
+                // Enviar el correo utilizando EmailJS
+                emailjs.send("service_2b9m5ed", "template_850makm", datos) // Reemplaza con tus IDs de servicio y plantilla
+                    .then(function (response) {
+                        console.log("Correo enviado con éxito", response);
+
+                        // Mostrar el popup cuando la barra de progreso llega al 100%
+                        popup.style.display = 'flex';
+                    })
+                    .catch(function (error) {
+                        console.error("Error al enviar el correo", error);
+                        // Aquí puedes agregar lógica para manejar errores
+                    });
+            }
+        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
+    }
+});
+
+
+
+
+
+   // Agrega un evento de escucha al formulario
+document.querySelector("#miFormulario").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+    // Obtén los valores de los campos del formulario
+    const nombreCompleto = document.querySelector("#nombre").value;
+    const telefono = document.querySelector("#telefono").value;
+    const email = document.querySelector("#email").value;
+    const empresa = document.querySelector("#empresa").value;
+
+    // Configura los datos que deseas enviar
+    const datos = {
+        nombreCompleto,
+        telefono,
+        email,
+        empresa,
+    };
+
+    // Envia el correo utilizando EmailJS
+    emailjs.send("service_2b9m5ed", "template_850makm", datos) // Reemplaza con tus IDs de servicio y plantilla
+        .then(function (response) {
+            console.log("Correo enviado con éxito", response);
+             // Oculta el formulario
+            const formularioProveedor = document.querySelector("#formulario-proveedor");
+            formularioProveedor.style.display = "none";
+
+            // Muestra el mensaje de confirmación
+            const formularioEnviado = document.querySelector("#formulario-enviado");
+            formularioEnviado.style.display = "block";
+
+            const calculadoraAhorro = document.getElementById('calcular-ahorro');
+            calculadoraAhorro.style.display = "block";
+        })
+        .catch(function (error) {
+            console.error("Error al enviar el correo", error);
+            // Aquí puedes agregar lógica para manejar errores
+        });
+});
 
     </script>
 <script>
