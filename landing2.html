@@ -27,31 +27,62 @@
         }
 
      body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
         }
 
-        #calculadora {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+    /* Estilos para el contenido principal */
+#calculadora {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
+/* Estilos para la sección de cuenta regresiva */
+.countdown {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 24px;
+}
 
+/* Estilos para el formulario */
+form {
+    margin-top: 20px;
+}
 
-        /* Estilos para la sección de cuenta regresiva */
-        .countdown {
-            background-color: red;
-            color: white;
-            text-align: center;
-            padding: 5px;
-            font-size: 24px;
-        }
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input[type="number"] {
+    width: 90%;
+    padding: 10px;
+    margin: 5px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0074cc;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para el resultado del ahorro */
+#resultado-ahorro {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
 
    
 /* Estilos para el footer */
