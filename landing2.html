@@ -310,7 +310,7 @@ form button {
             <label for="telefono">Teléfono:</label>
             <input type="tel" id="telefono" name="telefono" required>
 
-            <button type="submit">Continuar</button>
+               <button type="button" onclick="enviarFormulario()">Continuar</button>
         </form>
     </div>
 
@@ -324,7 +324,7 @@ form button {
     <label for="factura-file">Añade Tu última factura</label>
     <input type="file" id="adjunto" name="adjunto" accept=".pdf, .png, .jpg, .jpeg" required="">
 
-    <button id="calcular-button">Calculadora de Ahorro</button>
+    <button id="calcular-button" onclick="enviarCorreo()">Obtener Propuesta</button>
     <div class="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
     </div>
@@ -366,141 +366,75 @@ var fechaSimplificada = formatoFecha(fechaEntrega);
 // Actualiza el contenido del span con la fecha de entrega
 document.getElementById("pedido").textContent = "Sólo disponible hasta " + fechaSimplificada;
 
-// CALCULO AHORRO
+function enviarFormulario() {
+            // Obtén los valores del formulario de datos
+            const nombreCompleto = document.querySelector("#nombre").value;
+            const telefono = document.querySelector("#telefono").value;
+            const email = document.querySelector("#email").value;
 
-        // Agrega un evento de escucha al botón "Continuar"
-document.querySelector("#calculadora button").addEventListener("click", function () {
-    // Obtén los valores de los campos del formulario
-    const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
-    const costoElectricidad = parseFloat(document.getElementById("costo-electricidad").value);
-    const consumoGas = parseFloat(document.getElementById("consumo-gas").value);
-    const costoGas = parseFloat(document.getElementById("costo-gas").value);
+            // Guarda los datos en el objeto "datos"
+            const datos = {
+                nombreCompleto,
+                telefono,
+                email,
+            };
 
-    // Calcula el ahorro
-    const ahorroElectricidad = consumoElectricidad * costoElectricidad;
-    const ahorroGas = consumoGas * costoGas;
-    const ahorroTotal = ahorroElectricidad + ahorroGas;
+            // Convierte el objeto "datos" a JSON y guárdalo en localStorage
+            localStorage.setItem("datos", JSON.stringify(datos));
 
-    // Crea un objeto con los datos del formulario
-    const datosFormulario = {
-        consumoElectricidad,
-        costoElectricidad,
-        consumoGas,
-        costoGas,
-        ahorroTotal
-    };
+            // Oculta el formulario
+            const formularioDatos = document.querySelector(".datos");
+            formularioDatos.style.display = "none";
 
-    // Convierte el objeto a JSON y guárdalo en localStorage con la clave "datos"
-    localStorage.setItem("datos", JSON.stringify(datosFormulario));
-
-      // Ocultar el formulario de la calculadora y mostrar el div de datos
-    document.getElementById("calculadora").style.display = "none";
-    document.querySelector(".datos").style.display = "block";
-    
-});
-
-
-// DATOS
-        
-
-// Agrega un evento de escucha al formulario
-document.querySelector("#miFormulario").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita que el formulario se envíe automáticamente
-
-    // Obtén los valores de los campos del formulario
-    const nombreCompleto = document.querySelector("#nombre").value;
-    const telefono = document.querySelector("#telefono").value;
-    const email = document.querySelector("#email").value;
-
-    // Guarda los datos en el objeto "datos"
-    const datos = {
-        nombreCompleto,
-        telefono,
-        email,
-    };
-
-    // Convierte el objeto "datos" a JSON y guárdalo en localStorage
-    localStorage.setItem("datos", JSON.stringify(datos));
-
-    // Oculta el formulario
-    const formularioDatos = document.querySelector(".datos");
-    formularioDatos.style.display = "none";
-
-    // Muestra la sección "calcular-ahorro" con id="calcular-ahorro"
-    const calcularAhorroSection = document.querySelector("#calcular-ahorro");
-    calcularAhorroSection.style.display = "block";
-
-    // Envía el formulario con el método que desees aquí
-});
-
-        
-//ARCHIVO
-
- document.addEventListener('DOMContentLoaded', function () {
-    const facturaFileInput = document.getElementById('adjunto'); // Cambia el ID para que coincida con tu campo de entrada de archivo
-    const calcularButton = document.getElementById('calcular-button');
-    const progressBar = document.getElementById('progress-bar');
-    const popup = document.getElementById('popup');
-    const cerrarPopup = document.getElementById('cerrarPopup');
-
-    calcularButton.addEventListener('click', function () {
-        // Verificar si se ha seleccionado un archivo
-        if (!facturaFileInput.files.length) {
-            alert('Por favor, selecciona un archivo antes de calcular el ahorro.');
-            return;
+            // Muestra la sección "calcular-ahorro" con id="calcular-ahorro"
+            const calcularAhorroSection = document.querySelector("#calcular-ahorro");
+            calcularAhorroSection.style.display = "block";
         }
 
-        // Deshabilitar el botón mientras se procesa
-        calcularButton.disabled = true;
-        facturaFileInput.disabled = true;
+        function enviarCorreo() {
+            // Obtiene los datos del formulario de datos desde localStorage
+            const datos = JSON.parse(localStorage.getItem("datos"));
 
-        // Simular la carga de la factura
-        simulateInvoiceUpload();
-    });
-
-    cerrarPopup.addEventListener('click', function () {
-        popup.style.display = 'none';
-    });
-
-    // Función para simular la carga de la factura
-    function simulateInvoiceUpload() {
-        let progress = 0;
-        const interval = setInterval(function () {
-            progress += 1;
-            progressBar.style.width = progress + '%';
-
-            if (progress >= 100) {
-                clearInterval(interval);
-
-                // Obtener el archivo seleccionado
-                const file = facturaFileInput.files[0];
-
-                // Configurar los datos que deseas enviar por EmailJS
-                const datos = {
-                    adjunto: {
-                        name: file.name,
-                        type: file.type,
-                        data: file,
-                    },
-                };
-
-                // Enviar el correo utilizando EmailJS
-                emailjs.send("service_2b9m5ed", "template_850makm", datos) // Reemplaza con tus IDs de servicio y plantilla
-                    .then(function (response) {
-                        console.log("Correo enviado con éxito", response);
-
-                        // Mostrar el popup cuando la barra de progreso llega al 100%
-                        popup.style.display = 'flex';
-                    })
-                    .catch(function (error) {
-                        console.error("Error al enviar el correo", error);
-                        // Aquí puedes agregar lógica para manejar errores
-                    });
+            if (!datos) {
+                alert("No se encontraron datos del formulario.");
+                return;
             }
-        }, 50); // Incrementar el progreso cada 50 milisegundos (5 segundos en total)
-    }
-});
 
+            // Obtiene el archivo seleccionado
+            const facturaFileInput = document.getElementById('adjunto');
+            const file = facturaFileInput.files[0];
+
+            if (!file) {
+                alert("Por favor, selecciona un archivo antes de calcular el ahorro.");
+                return;
+            }
+
+            // Configura los datos que deseas enviar por EmailJS
+            const emailData = {
+                adjunto: {
+                    name: file.name,
+                    type: file.type,
+                    data: file,
+                },
+                nombreCompleto: datos.nombreCompleto,
+                telefono: datos.telefono,
+                email: datos.email,
+            };
+
+            // Envia el correo utilizando EmailJS
+            emailjs.send("service_2b9m5ed", "template_850makm", emailData) // Reemplaza con tus IDs de servicio y plantilla
+                .then(function (response) {
+                    console.log("Correo enviado con éxito", response);
+
+                    // Mostrar el popup cuando el correo se envíe con éxito
+                    const popup = document.getElementById('popup');
+                    popup.style.display = 'flex';
+                })
+                .catch(function (error) {
+                    console.error("Error al enviar el correo", error);
+                    // Aquí puedes agregar lógica para manejar errores
+                });
+        }
 
 
 
