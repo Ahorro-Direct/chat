@@ -110,6 +110,14 @@ form button {
     padding: 10px 0; /* Espaciado interno del footer (arriba y abajo: 10px, izquierda y derecha: 0) */
 }
 
+        .datos {
+            width: 100%;
+            max-width: 800px; /* Ancho máximo del contenedor */
+            margin: 0 auto; /* Centrar el contenedor horizontalmente */
+            padding: 20px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -129,8 +137,8 @@ form button {
                     Tu navegador no soporta la reproducción de videos.
                 </video>
             </div>
-        <h2>Calculadora de Ahorro</h2>
-        <p>Utiliza nuestra calculadora para estimar cuánto podrías ahorrar en tus facturas de electricidad y gas al utilizar nuestros productos:</p>
+        <h2>¿Cuál es tu consumo?</h2>
+        <p>Rellena el siguiente formulario</p>
 
         <form>
             <label for="consumo-electricidad">Consumo de Electricidad (kWh al mes):</label>
@@ -145,11 +153,30 @@ form button {
             <label for="costo-gas">Costo de Gas por m³ (USD):</label>
             <input type="number" id="costo-gas" name="costo-gas" required>
             
-            <button type="button" onclick="calcularAhorro()">Calcular Ahorro</button>
+            <button type="button" onclick="calcularAhorro()">Continuar</button>
         </form>
+</div>
+<p id="resultado-ahorro" style="color: white;"></p>
 
-        <p id="resultado-ahorro"></p>
+    
+    <div class="datos" style="display: none;">
+        <video autoplay muted loop>
+            <source src="ahorro-paso2.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos.
+        </video>
+        <form>
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
 
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <button type="submit">Continuar</button>
+        </form>
+    </div>
 
  <footer class="footer">
         <p>&copy; Ahorro Direct marca registrada 2023</p>
@@ -161,19 +188,23 @@ form button {
 
     <script>
     
- function calcularAhorro() {
-                const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
-                const costoElectricidad = parseFloat(document.getElementById("costo-electricidad").value);
-                const consumoGas = parseFloat(document.getElementById("consumo-gas").value);
-                const costoGas = parseFloat(document.getElementById("costo-gas").value);
+function calcularAhorro() {
+    const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
+    const costoElectricidad = parseFloat(document.getElementById("costo-electricidad").value);
+    const consumoGas = parseFloat(document.getElementById("consumo-gas").value);
+    const costoGas = parseFloat(document.getElementById("costo-gas").value);
 
-                const ahorroElectricidad = consumoElectricidad * costoElectricidad;
-                const ahorroGas = consumoGas * costoGas;
-                const ahorroTotal = ahorroElectricidad + ahorroGas;
+    const ahorroElectricidad = consumoElectricidad * costoElectricidad;
+    const ahorroGas = consumoGas * costoGas;
+    const ahorroTotal = ahorroElectricidad + ahorroGas;
 
-                document.getElementById("resultado-ahorro").innerHTML = `Tu ahorro mensual estimado es de: $${ahorroTotal.toFixed(2)} USD`;
-            }
+    // Mostrar el resultado
+    document.getElementById("resultado-ahorro").value = `Tu ahorro mensual estimado es de: $${ahorroTotal.toFixed(2)} USD`;
 
+    // Ocultar el formulario de la calculadora y mostrar el div de datos
+    document.getElementById("calculadora").style.display = "none";
+    document.querySelector(".datos").style.display = "block";
+}
 
 function formatoFecha(fecha) {
     var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
