@@ -26,12 +26,20 @@
     text-decoration: none;
         }
 
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+     body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
+        }
+
+        #calculadora {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
 
@@ -83,24 +91,11 @@
             <label for="costo-gas">Costo de Gas por m³ (USD):</label>
             <input type="number" id="costo-gas" name="costo-gas" required>
             
-            <button type="button" onclick="mostrarBarraProgreso()">Calcular Ahorro</button>
+            <button type="button" onclick="calcularAhorro()">Calcular Ahorro</button>
         </form>
 
-        <div id="progress-bar-container">
-            <div id="progress-bar"></div>
-        </div>
+        <p id="resultado-ahorro"></p>
 
-        <div id="informe-container">
-            <h1>Tenemos tu informe</h1>
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" required>
-            
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required>
-
-            <button id="btn-enviar-informe" onclick="enviarInforme()">Enviar Informe</button>
-        </div>
-    </div>
 
  <footer class="footer">
         <p>&copy; Ahorro Direct marca registrada 2023</p>
@@ -112,31 +107,19 @@
 
     <script>
     
- function mostrarBarraProgreso() {
-            const progressBar = document.getElementById("progress-bar");
-            const progressBarContainer = document.getElementById("progress-bar-container");
-            const informeContainer = document.getElementById("informe-container");
+ function calcularAhorro() {
+                const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
+                const costoElectricidad = parseFloat(document.getElementById("costo-electricidad").value);
+                const consumoGas = parseFloat(document.getElementById("consumo-gas").value);
+                const costoGas = parseFloat(document.getElementById("costo-gas").value);
 
-            progressBarContainer.style.display = "block";
-            progressBar.style.transition = "width 3s linear";
-            progressBar.style.width = "100%";
+                const ahorroElectricidad = consumoElectricidad * costoElectricidad;
+                const ahorroGas = consumoGas * costoGas;
+                const ahorroTotal = ahorroElectricidad + ahorroGas;
 
-            // Después de que se complete la barra de progreso, muestra el contenedor del informe.
-            setTimeout(function() {
-                progressBarContainer.style.display = "none";
-                informeContainer.style.display = "flex";
-            }, 3000);
-        }
+                document.getElementById("resultado-ahorro").innerHTML = `Tu ahorro mensual estimado es de: $${ahorroTotal.toFixed(2)} USD`;
+            }
 
-        function enviarInforme() {
-            const telefono = document.getElementById("telefono").value;
-            const email = document.getElementById("email").value;
-
-            // Aquí puedes realizar acciones para enviar el informe, como enviar datos a través de una API o realizar alguna operación adicional.
-
-            // Por ejemplo, mostrar un mensaje de confirmación en la consola:
-            console.log(`Informe enviado a ${telefono} y ${email}`);
-        }
 
 function formatoFecha(fecha) {
     var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
