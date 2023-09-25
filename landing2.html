@@ -66,52 +66,42 @@
     <div class="countdown">
         <p style="font-size: 15px; margin:0">OFERTA ÚNICA E IRREPETIBLE <span id="pedido"></span></p>
     </div>
-    <div class="section">
-        <div class="box-section" style="z-index: 2;">
-            <h2  style="width:90%; margin: 20px auto;">
-                SABEMOS QUE ESTÁS PAGANDO DE MÁS EN TU FACTURA <br><br> <span class="highlighted-text"> DE LUZ, GAS Y FIBRA</span>
-            </h2>
-            <a href="https://api.whatsapp.com/send?phone=616219596&amp;text=Quiero%20más%20información%20de%20la%20fibra%20y%20móvil%20de%20FibraDirect" class="whatsapp-button">
-                <i class="fab fa-whatsapp whatsapp-icon"></i> Hablemos Ahora
-            </a>
+  <div id="calculadora">
+        <h2>Calculadora de Ahorro</h2>
+        <p>Utiliza nuestra calculadora para estimar cuánto podrías ahorrar en tus facturas de electricidad y gas al utilizar nuestros productos:</p>
+
+        <form>
+            <label for="consumo-electricidad">Consumo de Electricidad (kWh al mes):</label>
+            <input type="number" id="consumo-electricidad" name="consumo-electricidad" required>
+            
+            <label for="costo-electricidad">Costo de Electricidad por kWh (USD):</label>
+            <input type="number" id="costo-electricidad" name="costo-electricidad" required>
+
+            <label for="consumo-gas">Consumo de Gas (m³ al mes):</label>
+            <input type="number" id="consumo-gas" name="consumo-gas" required>
+            
+            <label for="costo-gas">Costo de Gas por m³ (USD):</label>
+            <input type="number" id="costo-gas" name="costo-gas" required>
+            
+            <button type="button" onclick="mostrarBarraProgreso()">Calcular Ahorro</button>
+        </form>
+
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+
+        <div id="informe-container">
+            <h1>Tenemos tu informe</h1>
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+            
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button id="btn-enviar-informe" onclick="enviarInforme()">Enviar Informe</button>
         </div>
     </div>
 
-<div class="form-section">
-        <h2>Formulario de Contacto</h2>
-   <form id="miFormulario">
-    <label for="telefono">¿Alguna duda? Te llamamos</label>
-    <input id="telefono" maxlength="9" type="tel" placeholder="Introduce tu teléfono" required>
-
-    <button type="submit">LLÁMAME GRATIS</button>
-
-    <label>
-        <input type="checkbox" name="politica" required>
-        He leído y acepto la política de privacidad y cookies
-    </label>
-
-    <!-- Agregar un elemento para mostrar el mensaje de error -->
-    <div id="errorTelefono" style="color: red;"></div>
-</form>
-<div id="mensaje-exito" style="display: none;">
-    <p>Nos pondremos en contacto contigo en menos de 24 horas. Si es fin de semana, te contactaremos el lunes por la mañana.</p>
-</div>
-
-    </div>
-
-<div class="section2">
-        <div class="box-section" style="z-index: 2;">
-            <h2 style="width:90%; margin: 20px auto;">
-               Escríbenos ahora para <br><br> <span class="highlighted-text"> Ahorrar 300€ </span><br><br> Anuales
-            </h2>
-            <a href="https://api.whatsapp.com/send?phone=616219596&amp;text=Quiero%20más%20información%20de%20la%20fibra%20y%20móvil%20de%20FibraDirect" class="whatsapp-button">
-                <i class="fab fa-whatsapp whatsapp-icon"></i> Hablemos Ahora
-            </a>
-        </div>
-       <div class="box-imagen" style="z-index: 2;">
-            <img src="mobileoferta.png" alt="Oferta Móvil" style="max-width: 300px;">
-        </div>
-    </div>
  <footer class="footer">
         <p>&copy; Ahorro Direct marca registrada 2023</p>
     </footer>
@@ -121,55 +111,32 @@
 </script>
 
     <script>
-     // Obtener el formulario
-const formulario = document.getElementById('miFormulario');   
+    
+ function mostrarBarraProgreso() {
+            const progressBar = document.getElementById("progress-bar");
+            const progressBarContainer = document.getElementById("progress-bar-container");
+            const informeContainer = document.getElementById("informe-container");
 
-// Obtener el campo de entrada de teléfono
-const telefonoInput = document.getElementById('telefono');
+            progressBarContainer.style.display = "block";
+            progressBar.style.transition = "width 3s linear";
+            progressBar.style.width = "100%";
 
-// Obtener el elemento del mensaje de error
-const errorTelefono = document.getElementById('errorTelefono');
+            // Después de que se complete la barra de progreso, muestra el contenedor del informe.
+            setTimeout(function() {
+                progressBarContainer.style.display = "none";
+                informeContainer.style.display = "flex";
+            }, 3000);
+        }
 
-// Agregar un event listener para el evento "input" del campo de teléfono
-telefonoInput.addEventListener('input', function(event) {
-    // Verificar si el valor ingresado contiene espacios en blanco
-    if (/\s/.test(telefonoInput.value)) {
-        errorTelefono.textContent = 'No se permiten espacios en blanco';
-        telefonoInput.value = telefonoInput.value.replace(/\s/g, ''); // Eliminar espacios en blanco
-    } else {
-        errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
-    }
-});
+        function enviarInforme() {
+            const telefono = document.getElementById("telefono").value;
+            const email = document.getElementById("email").value;
 
-// Agregar un event listener para el evento "submit" del formulario
-formulario.addEventListener('submit', function(event) {
-event.preventDefault();
-    // Verificar si el valor ingresado contiene exactamente 9 dígitos
-    if (!/^\d{9}$/.test(telefonoInput.value)) {
-        errorTelefono.textContent = 'Utiliza un teléfono válido';
-        event.preventDefault(); // Evitar el envío del formulario si hay un error
-    } else {
-        errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
+            // Aquí puedes realizar acciones para enviar el informe, como enviar datos a través de una API o realizar alguna operación adicional.
 
-        // Ocultar el formulario y mostrar el mensaje de éxito
-        formulario.style.display = 'none';
-        document.getElementById('mensaje-exito').style.display = 'block';
-
-        // Enviar el correo utilizando EmailJS
-        emailjs.send("service_2b9m5ed", "template_850makm", {
-            telefono: telefonoInput.value
-        })
-        .then(function(response) {
-            console.log("Correo enviado con éxito:", response);
-        })
-        .catch(function(error) {
-            console.error("Error al enviar el correo:", error);
-        });
-    }
-});
-
-
-
+            // Por ejemplo, mostrar un mensaje de confirmación en la consola:
+            console.log(`Informe enviado a ${telefono} y ${email}`);
+        }
 
 function formatoFecha(fecha) {
     var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
