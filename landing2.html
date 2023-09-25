@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo-stiki.png" type="image/png">
+
+    <title>Ahorro Direct</title>
+    <style>
+        /* Estilos para el header */
+        .header {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+
+        .phone {
+                font-size: 18px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+        /* Estilos para la sección de cuenta regresiva */
+        .countdown {
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 24px;
+        }
+
+   
+/* Estilos para el footer */
+.footer {
+    background-color: #333; /* Color de fondo del footer */
+    color: #fff; /* Color del texto en el footer */
+    text-align: center; /* Alineación del texto al centro */
+    padding: 10px 0; /* Espaciado interno del footer (arriba y abajo: 10px, izquierda y derecha: 0) */
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo-stiki.png" alt="AhorroDirect" class="logo">
+        <p>
+            Teléfono: <a href="tel:+34616219596" class="phone">616 219 596</a>
+        </p>
+    </div>
+    <div class="countdown">
+        <p style="font-size: 15px; margin:0">OFERTA ÚNICA E IRREPETIBLE <span id="pedido"></span></p>
+    </div>
+    <div class="section">
+        <div class="box-section" style="z-index: 2;">
+            <h2  style="width:90%; margin: 20px auto;">
+                SABEMOS QUE ESTÁS PAGANDO DE MÁS EN TU FACTURA <br><br> <span class="highlighted-text"> DE LUZ, GAS Y FIBRA</span>
+            </h2>
+            <a href="https://api.whatsapp.com/send?phone=616219596&amp;text=Quiero%20más%20información%20de%20la%20fibra%20y%20móvil%20de%20FibraDirect" class="whatsapp-button">
+                <i class="fab fa-whatsapp whatsapp-icon"></i> Hablemos Ahora
+            </a>
+        </div>
+    </div>
+
+<div class="form-section">
+        <h2>Formulario de Contacto</h2>
+   <form id="miFormulario">
+    <label for="telefono">¿Alguna duda? Te llamamos</label>
+    <input id="telefono" maxlength="9" type="tel" placeholder="Introduce tu teléfono" required>
+
+    <button type="submit">LLÁMAME GRATIS</button>
+
+    <label>
+        <input type="checkbox" name="politica" required>
+        He leído y acepto la política de privacidad y cookies
+    </label>
+
+    <!-- Agregar un elemento para mostrar el mensaje de error -->
+    <div id="errorTelefono" style="color: red;"></div>
+</form>
+<div id="mensaje-exito" style="display: none;">
+    <p>Nos pondremos en contacto contigo en menos de 24 horas. Si es fin de semana, te contactaremos el lunes por la mañana.</p>
+</div>
+
+    </div>
+
+<div class="section2">
+        <div class="box-section" style="z-index: 2;">
+            <h2 style="width:90%; margin: 20px auto;">
+               Escríbenos ahora para <br><br> <span class="highlighted-text"> Ahorrar 300€ </span><br><br> Anuales
+            </h2>
+            <a href="https://api.whatsapp.com/send?phone=616219596&amp;text=Quiero%20más%20información%20de%20la%20fibra%20y%20móvil%20de%20FibraDirect" class="whatsapp-button">
+                <i class="fab fa-whatsapp whatsapp-icon"></i> Hablemos Ahora
+            </a>
+        </div>
+       <div class="box-imagen" style="z-index: 2;">
+            <img src="mobileoferta.png" alt="Oferta Móvil" style="max-width: 300px;">
+        </div>
+    </div>
+ <footer class="footer">
+        <p>&copy; Ahorro Direct marca registrada 2023</p>
+    </footer>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    emailjs.init("vD8AirUimJoqPvHvw"); // Reemplaza "tu_usuario_emailjs" con tu ID de usuario de EmailJS
+</script>
+
+    <script>
+     // Obtener el formulario
+const formulario = document.getElementById('miFormulario');   
+
+// Obtener el campo de entrada de teléfono
+const telefonoInput = document.getElementById('telefono');
+
+// Obtener el elemento del mensaje de error
+const errorTelefono = document.getElementById('errorTelefono');
+
+// Agregar un event listener para el evento "input" del campo de teléfono
+telefonoInput.addEventListener('input', function(event) {
+    // Verificar si el valor ingresado contiene espacios en blanco
+    if (/\s/.test(telefonoInput.value)) {
+        errorTelefono.textContent = 'No se permiten espacios en blanco';
+        telefonoInput.value = telefonoInput.value.replace(/\s/g, ''); // Eliminar espacios en blanco
+    } else {
+        errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
+    }
+});
+
+// Agregar un event listener para el evento "submit" del formulario
+formulario.addEventListener('submit', function(event) {
+event.preventDefault();
+    // Verificar si el valor ingresado contiene exactamente 9 dígitos
+    if (!/^\d{9}$/.test(telefonoInput.value)) {
+        errorTelefono.textContent = 'Utiliza un teléfono válido';
+        event.preventDefault(); // Evitar el envío del formulario si hay un error
+    } else {
+        errorTelefono.textContent = ''; // Limpiar el mensaje de error si es válido
+
+        // Ocultar el formulario y mostrar el mensaje de éxito
+        formulario.style.display = 'none';
+        document.getElementById('mensaje-exito').style.display = 'block';
+
+        // Enviar el correo utilizando EmailJS
+        emailjs.send("service_2b9m5ed", "template_850makm", {
+            telefono: telefonoInput.value
+        })
+        .then(function(response) {
+            console.log("Correo enviado con éxito:", response);
+        })
+        .catch(function(error) {
+            console.error("Error al enviar el correo:", error);
+        });
+    }
+});
+
+
+
+
+function formatoFecha(fecha) {
+    var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
+    return fecha.toLocaleDateString('es-ES', opciones);
+}
+
+let fecha = new Date(); // Fecha actual
+
+// Suma 2 días a la fecha actual
+fecha.setDate(fecha.getDate() + 2);
+
+var fechaEntrega = fecha;
+var fechaSimplificada = formatoFecha(fechaEntrega);
+
+// Actualiza el contenido del span con la fecha de entrega
+document.getElementById("pedido").textContent = "Sólo disponible hasta " + fechaSimplificada;
+
+
+    </script>
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '156876697392919');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=156876697392919&ev=PageView&noscript=1"
+/></noscript>
+</body>
+</html>
