@@ -88,6 +88,19 @@ form button {
     font-weight: bold;
 }
 
+        /* Estilos para el contenedor del video */
+        .video-container {
+            width: 100%;
+            max-width: 800px; /* Ancho máximo del video */
+            margin: 0 auto; /* Centrar el video horizontalmente */
+        }
+
+        /* Estilos para el video */
+        video {
+            width: 100%;
+            display: block;
+        }
+
    
 /* Estilos para el footer */
 .footer {
@@ -110,6 +123,12 @@ form button {
         <p style="font-size: 15px; margin:0">OFERTA ÚNICA E IRREPETIBLE <span id="pedido"></span></p>
     </div>
   <div id="calculadora">
+           <div class="video-container">
+                <video autoplay muted loop>
+                    <source src="ahorro-paso1.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+            </div>
         <h2>Calculadora de Ahorro</h2>
         <p>Utiliza nuestra calculadora para estimar cuánto podrías ahorrar en tus facturas de electricidad y gas al utilizar nuestros productos:</p>
 
