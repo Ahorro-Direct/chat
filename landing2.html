@@ -349,23 +349,6 @@ form button {
 
     <script>
     
-function calcularAhorro() {
-    const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
-    const costoElectricidad = parseFloat(document.getElementById("costo-electricidad").value);
-    const consumoGas = parseFloat(document.getElementById("consumo-gas").value);
-    const costoGas = parseFloat(document.getElementById("costo-gas").value);
-
-    const ahorroElectricidad = consumoElectricidad * costoElectricidad;
-    const ahorroGas = consumoGas * costoGas;
-    const ahorroTotal = ahorroElectricidad + ahorroGas;
-
-    // Mostrar el resultado
-    document.getElementById("resultado-ahorro").value = `Tu ahorro mensual estimado es de: $${ahorroTotal.toFixed(2)} USD`;
-
-    // Ocultar el formulario de la calculadora y mostrar el div de datos
-    document.getElementById("calculadora").style.display = "none";
-    document.querySelector(".datos").style.display = "block";
-}
 
 function formatoFecha(fecha) {
     var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -383,7 +366,7 @@ var fechaSimplificada = formatoFecha(fechaEntrega);
 // Actualiza el contenido del span con la fecha de entrega
 document.getElementById("pedido").textContent = "Sólo disponible hasta " + fechaSimplificada;
 
-// DATOS
+// CALCULO AHORRO
 
         // Agrega un evento de escucha al botón "Continuar"
 document.querySelector("#calculadora button").addEventListener("click", function () {
@@ -409,10 +392,15 @@ document.querySelector("#calculadora button").addEventListener("click", function
 
     // Convierte el objeto a JSON y guárdalo en localStorage con la clave "datos"
     localStorage.setItem("datos", JSON.stringify(datosFormulario));
+
+      // Ocultar el formulario de la calculadora y mostrar el div de datos
+    document.getElementById("calculadora").style.display = "none";
+    document.querySelector(".datos").style.display = "block";
+    
 });
 
 
-
+// DATOS
         
 
 // Agrega un evento de escucha al formulario
