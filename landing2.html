@@ -367,9 +367,8 @@ form button {
 <div id="popup" class="popup">
     <div class="popup-content">
         <img src="ahorro.png" alt="Oferta Energética">
-        <h1>Enhorabuena tenemos una oferta energética 🎉🎉</h1>
+        <h1>Tenemos una propuesta acorde a lo que necesitas 🎉🎉</h1>
         <p>Nuestro Asesor Iván especialista energético se pondrá en contacto contigo</p>
-        <button id="cerrarPopup">Cerrar</button>
     </div>
 </div>
     
@@ -470,10 +469,10 @@ function enviarFormulario() {
 
 function enviarCorreo() {
     // Obtiene los datos de consumo desde localStorage
-    const datosConsumo = JSON.parse(localStorage.getItem("consumo"));
+    const datosConsumo = JSON.parse(localStorage.getItem("datosConsumo"));
 
     // Obtiene los datos personales desde localStorage
-    const datosPersonales = JSON.parse(localStorage.getItem("datos"));
+    const datosPersonales = JSON.parse(localStorage.getItem("datosPersonales"));
 
     if (!datosConsumo || !datosPersonales) {
         alert("No se encontraron datos completos para enviar el correo.");
@@ -506,6 +505,14 @@ function enviarCorreo() {
         ahorroTotal: datosConsumo.ahorroTotal,
     };
 
+    // Deshabilitar el botón mientras se procesa
+    const calcularButton = document.getElementById('calcular-button');
+    calcularButton.disabled = true;
+    facturaFileInput.disabled = true;
+
+    // Simular la carga de la factura
+    simulateInvoiceUpload();
+
     // Envia el correo utilizando EmailJS
     emailjs.send("service_2b9m5ed", "template_850makm", emailData) // Reemplaza con tus IDs de servicio y plantilla
         .then(function (response) {
@@ -514,11 +521,33 @@ function enviarCorreo() {
             // Mostrar el popup cuando el correo se envíe con éxito
             const popup = document.getElementById('popup');
             popup.style.display = 'flex';
+
+            // Habilitar el botón después de enviar el correo
+            calcularButton.disabled = false;
+            facturaFileInput.disabled = false;
         })
         .catch(function (error) {
             console.error("Error al enviar el correo", error);
             // Aquí puedes agregar lógica para manejar errores
+
+            // Habilitar el botón en caso de error
+            calcularButton.disabled = false;
+            facturaFileInput.disabled = false;
         });
+}
+
+// Función para simular la carga de la factura
+function simulateInvoiceUpload() {
+    let progress = 0;
+    const progressBar = document.getElementById('progress-bar');
+    const interval = setInterval(function () {
+        progress += 1;
+        progressBar.style.width = progress + '%';
+
+        if (progress >= 100) {
+            clearInterval(interval);
+        }
+    }, 10); // Puedes ajustar el valor del intervalo para controlar la velocidad de simulación
 }
 
 
