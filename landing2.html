@@ -409,8 +409,8 @@ document.getElementById("pedido").textContent = "Sólo disponible hasta " + fech
 
   // CALCULO AHORRO
 
-        // Agrega un evento de escucha al botón "Continuar"
-function enviarFormulario() {
+      // Agrega un evento de escucha al botón "Continuar"
+document.querySelector("#calculadora button").addEventListener("click", function () {
     // Obtén los valores de los campos del formulario
     const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
     const costoElectricidad = parseFloat(document.getElementById("costo-electricidad").value);
@@ -438,7 +438,7 @@ function enviarFormulario() {
     document.getElementById("calculadora").style.display = "none";
     document.querySelector(".datos").style.display = "block";
     
-};
+});
 
 
 
