@@ -404,9 +404,9 @@ document.getElementById("pedido").textContent = "Sólo disponible hasta " + fech
         // CALCULO AHORRO
 
 
+  // CALCULO AHORRO
 
-        document.addEventListener("DOMContentLoaded", function() {
-          // Agrega un evento de escucha al botón "Continuar"
+        // Agrega un evento de escucha al botón "Continuar"
 document.querySelector("#calculadora button").addEventListener("click", function () {
     // Obtén los valores de los campos del formulario
     const consumoElectricidad = parseFloat(document.getElementById("consumo-electricidad").value);
@@ -414,36 +414,7 @@ document.querySelector("#calculadora button").addEventListener("click", function
     const consumoGas = parseFloat(document.getElementById("consumo-gas").value);
     const costoGas = parseFloat(document.getElementById("costo-gas").value);
 
-    // Verifica si los campos están en blanco y muestra el mensaje de aviso si es necesario
-    if (isNaN(consumoElectricidad) || consumoElectricidad <= 0) {
-        document.getElementById("consumo-electricidad-aviso").style.display = "block";
-        return; // Detén la ejecución si el campo está en blanco o no válido
-    } else {
-        document.getElementById("consumo-electricidad-aviso").style.display = "none";
-    }
-
-    if (isNaN(costoElectricidad) || costoElectricidad <= 0) {
-        document.getElementById("costo-electricidad-aviso").style.display = "block";
-        return;
-    } else {
-        document.getElementById("costo-electricidad-aviso").style.display = "none";
-    }
-
-    if (isNaN(consumoGas) || consumoGas <= 0) {
-        document.getElementById("consumo-gas-aviso").style.display = "block";
-        return;
-    } else {
-        document.getElementById("consumo-gas-aviso").style.display = "none";
-    }
-
-    if (isNaN(costoGas) || costoGas <= 0) {
-        document.getElementById("costo-gas-aviso").style.display = "block";
-        return;
-    } else {
-        document.getElementById("costo-gas-aviso").style.display = "none";
-    }
-
-    // Si todos los campos son válidos, realiza los cálculos
+    // Calcula el ahorro
     const ahorroElectricidad = consumoElectricidad * costoElectricidad;
     const ahorroGas = consumoGas * costoGas;
     const ahorroTotal = ahorroElectricidad + ahorroGas;
@@ -465,7 +436,7 @@ document.querySelector("#calculadora button").addEventListener("click", function
     document.querySelector(".datos").style.display = "block";
     
 });
-});
+
 
 
      
