@@ -469,10 +469,10 @@ function enviarFormulario() {
 
 function enviarCorreo() {
     // Obtiene los datos de consumo desde localStorage
-    const datosConsumo = JSON.parse(localStorage.getItem("datosConsumo"));
+    const datosConsumo = JSON.parse(localStorage.getItem("consumo"));
 
     // Obtiene los datos personales desde localStorage
-    const datosPersonales = JSON.parse(localStorage.getItem("datosPersonales"));
+    const datosPersonales = JSON.parse(localStorage.getItem("datos"));
 
     if (!datosConsumo || !datosPersonales) {
         alert("No se encontraron datos completos para enviar el correo.");
