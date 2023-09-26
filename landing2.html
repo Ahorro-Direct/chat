@@ -468,52 +468,58 @@ function enviarFormulario() {
             calcularAhorroSection.style.display = "block";
         }
 
-// ARCHIVO Y EMAIL
+function enviarCorreo() {
+    // Obtiene los datos de consumo desde localStorage
+    const datosConsumo = JSON.parse(localStorage.getItem("consumo"));
 
-        function enviarCorreo() {
-            // Obtiene los datos del formulario de datos desde localStorage
-            const datos = JSON.parse(localStorage.getItem("datos"));
+    // Obtiene los datos personales desde localStorage
+    const datosPersonales = JSON.parse(localStorage.getItem("datos"));
 
-            if (!datos) {
-                alert("No se encontraron datos del formulario.");
-                return;
-            }
+    if (!datosConsumo || !datosPersonales) {
+        alert("No se encontraron datos completos para enviar el correo.");
+        return;
+    }
 
-            // Obtiene el archivo seleccionado
-            const facturaFileInput = document.getElementById('adjunto');
-            const file = facturaFileInput.files[0];
+    // Obtiene el archivo seleccionado
+    const facturaFileInput = document.getElementById('adjunto');
+    const file = facturaFileInput.files[0];
 
-            if (!file) {
-                alert("Por favor, selecciona un archivo antes de calcular el ahorro.");
-                return;
-            }
+    if (!file) {
+        alert("Por favor, selecciona un archivo antes de calcular el ahorro.");
+        return;
+    }
 
-            // Configura los datos que deseas enviar por EmailJS
-            const emailData = {
-                adjunto: {
-                    name: file.name,
-                    type: file.type,
-                    data: file,
-                },
-                nombreCompleto: datos.nombreCompleto,
-                telefono: datos.telefono,
-                email: datos.email,
-            };
+    // Configura los datos que deseas enviar por EmailJS
+    const emailData = {
+        adjunto: {
+            name: file.name,
+            type: file.type,
+            data: file,
+        },
+        nombreCompleto: datosPersonales.nombreCompleto,
+        telefono: datosPersonales.telefono,
+        email: datosPersonales.email,
+        consumoElectricidad: datosConsumo.consumoElectricidad,
+        costoElectricidad: datosConsumo.costoElectricidad,
+        consumoGas: datosConsumo.consumoGas,
+        costoGas: datosConsumo.costoGas,
+        ahorroTotal: datosConsumo.ahorroTotal,
+    };
 
-            // Envia el correo utilizando EmailJS
-            emailjs.send("service_2b9m5ed", "template_850makm", emailData) // Reemplaza con tus IDs de servicio y plantilla
-                .then(function (response) {
-                    console.log("Correo enviado con éxito", response);
+    // Envia el correo utilizando EmailJS
+    emailjs.send("service_2b9m5ed", "template_850makm", emailData) // Reemplaza con tus IDs de servicio y plantilla
+        .then(function (response) {
+            console.log("Correo enviado con éxito", response);
 
-                    // Mostrar el popup cuando el correo se envíe con éxito
-                    const popup = document.getElementById('popup');
-                    popup.style.display = 'flex';
-                })
-                .catch(function (error) {
-                    console.error("Error al enviar el correo", error);
-                    // Aquí puedes agregar lógica para manejar errores
-                });
-        }
+            // Mostrar el popup cuando el correo se envíe con éxito
+            const popup = document.getElementById('popup');
+            popup.style.display = 'flex';
+        })
+        .catch(function (error) {
+            console.error("Error al enviar el correo", error);
+            // Aquí puedes agregar lógica para manejar errores
+        });
+}
 
 
 
