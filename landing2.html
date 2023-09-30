@@ -320,6 +320,21 @@ form button {
     }
 }
 
+/* Estilo para la sección de la imagen */
+.ahorro-direct-section {
+    max-width: 800px; /* Ancho máximo de la sección */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Altura automática para mantener la proporción */
+    margin: 0 auto; /* Centrar la sección horizontalmente */
+}
+
+/* Estilo para la imagen dentro de la sección */
+.ahorro-direct-section img {
+    max-width: 100%; /* Ancho máximo de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+    display: block; /* Eliminar espacios en blanco debajo de la imagen */
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+}
 
     </style>
 </head>
@@ -402,6 +417,12 @@ form button {
         <div class="progress-bar" id="progress-bar"></div>
     </div>
 </section>
+
+<section class="ahorro-direct-section">
+    <img src="review11.jpg" alt="Imagen de Ahorro Direct">
+</section>
+
+
 <section class="reviews">
     <div class="review">
         <img src="review1.png" alt="Usuario 11">
