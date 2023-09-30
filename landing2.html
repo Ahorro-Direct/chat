@@ -284,7 +284,7 @@ form button {
 
 /* Estilo para la sección de reseñas */
 .reviews {
-    background-color: red; /* Color de fondo de la sección */
+     background-color: red; /* Color de fondo de la sección */
     color: white; /* Color del texto */
     display: flex;
     overflow: hidden;
@@ -292,22 +292,30 @@ form button {
     white-space: nowrap; /* Para evitar saltos de línea */
 }
 
-/* Estilo para cada reseña */
+/* Estilo para cada review */
 .review {
-    width: 300px; /* Ancho de cada reseña */
+    width: calc(50% - 40px); /* Ancho del 50% del contenedor con un margen de 20px en cada lado */
+    margin: 20px; /* Margen de 20px en todos los lados de cada review */
     padding: 20px;
-    margin: 0 10px; /* Espacio entre cada reseña */
+border: 2px solid white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra */
-    border: 2px solid red;
     border-radius: 10px;
-    animation: scroll 20s linear infinite; /* Animación de desplazamiento en bucle */
 }
 
-/* Estilo para la imagen de cada reseña */
+/* Estilo para la imagen de cada review */
 .review img {
-    max-width: 100%;
+    max-width: 100%; /* Hace que la imagen sea responsiva */
     height: auto;
     border-radius: 50%;
+}
+
+/* Estilos adicionales para los títulos y párrafos */
+.review h2 {
+    margin-top: 10px; /* Espacio superior para el título */
+}
+
+.review p {
+    margin-top: 10px; /* Espacio superior para el párrafo */
 }
 
 /* Animación de desplazamiento */
