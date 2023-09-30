@@ -282,53 +282,67 @@ form button {
 }
 
 
-/* Estilo para la sección de reseñas */
-.reviews {
-    background: red;
-    color: white; /* Color del texto */
-    display: flex;
+.reviews-section {
+    text-align: center;
+    padding: 40px 0;
     overflow: hidden;
-    width: 100%;
-    white-space: nowrap; /* Para evitar saltos de línea */
 }
 
-/* Estilo para cada review */
+.review-container {
+    display: flex;
+    width: max-content;
+    animation: moverEjemplos 100s linear infinite;
+}
+
 .review {
-    width: 200px; /* Ancho de cada reseña */
+    width: 300px;
     padding: 20px;
-    background-color: red; /* Color de fondo de cada reseña */
-    color: white;
-    margin: 20px; /* Espacio entre cada reseña */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra */
-    border-radius: 10px;
-    animation: scroll 20s linear infinite; /
+    background: #FDFCE8;
+    border: 1px solid #D6D6D6;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 0 10px; /* Añadido un margen horizontal para separar las reseñas */
 }
 
-/* Estilo para la imagen de cada review */
 .review img {
-    max-width: 100%; /* Hace que la imagen sea responsiva */
+    max-width: 100%; /* Hace que la imagen sea responsive */
     height: auto;
     border-radius: 50%;
 }
 
-/* Estilos adicionales para los títulos y párrafos */
-.review h2 {
-    margin-top: 10px; /* Espacio superior para el título */
-}
-
-.review p {
-    margin-top: 10px; /* Espacio superior para el párrafo */
-}
-
 /* Animación de desplazamiento */
-@keyframes scroll {
+@keyframes moverEjemplos {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
     100% {
         transform: translateX(-100%);
     }
 }
+
+/* Animación de desplazamiento de las reseñas */
+@keyframes scrollReviews {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .review {
+        width: 50%; /* Ajusta el ancho al 50% para mostrar dos reseñas por fila en móvil */
+    }
+
+    .review img {
+        max-width: 50px;
+        height: 50px; /* Tamaño de imagen reducido en dispositivos móviles */
+    }
+}
+
 
 /* Estilo para la sección de la imagen */
 .ahorro-direct-section {
@@ -433,67 +447,56 @@ form button {
 </section>
 
 
-<section class="reviews">
-    <div class="review">
-        <img src="review1.png" alt="Usuario 11">
-        <h2>Cristian Pereira</h2>
-        <p>Estoy encantada con los servicios de Ahorro Direct de Luz y Gas.<br> He notado un ahorro significativo en mis facturas desde que me cambié.<br> ¡El equipo de atención al cliente es increíblemente servicial!</p>
+<div class="reviews-section">
+    <h1>Reseñas de Ahorro Direct</h1>
+    <div class="review-container">
+        <div class="review">
+            <img src="review1.png" alt="Review 1">
+            <p>¡💡💳 Increíble experiencia con Ahorro Direct! Los servicios son geniales y el ahorro es asombroso. ¡Más de lo que esperaba! 😍🔌</p>
+        </div>
+        <div class="review">
+            <img src="review2.png" alt="Review 2">
+            <p>Recomiendo encarecidamente Ahorro Direct. 💡📦 Tuve un tiempo fantástico explorando sus servicios. ¡Encontré las mejores ofertas! 😊👌</p>
+        </div>
+        <div class="review">
+            <img src="review3.png" alt="Review 3">
+            <p>Una forma emocionante de ahorrar en energía y gas. Cada plan es único y lleno de ahorro. 💡🔥 ¡Me encantó cada minuto de ser cliente de Ahorro Direct! 💖🏠</p>
+        </div>
+        <div class="review">
+            <img src="review4.png" alt="Review 4">
+            <p>Los planes de Ahorro Direct son una excelente manera de ahorrar en tus facturas de energía y gas. 💡💰 Siempre me mantienen ahorrando. 💁‍♂️💰</p>
+        </div>
+        <div class="review">
+            <img src="review5.png" alt="Review 5">
+            <p>Had an amazing time with Ahorro Direct! The services are great and the savings are breathtaking. 💡💰 A must-visit for cost-conscious customers! 👏🏡</p>
+        </div>
+        <div class="review">
+            <img src="review6.png" alt="Review 6">
+            <p>Highly recommend Ahorro Direct. 💡📦 I had a fantastic time exploring their services. 🌆🏡 They have the best energy and gas saving plans! 👍😃</p>
+        </div>
+        <div class="review">
+            <img src="review7.png" alt="Review 7">
+            <p>An exciting way to save on energy and gas bills. Each plan is unique and full of savings. 💡🔌✨ Ahorro Direct always has the latest savings offers! 💡🏠</p>
+        </div>
+        <div class="review">
+            <img src="review8.png" alt="Review 8">
+            <p>Ahorro Direct's plans are an excellent way to stay updated with the latest energy and gas saving options. 🌟💡 I'm always saving with Ahorro Direct! 💡🏢</p>
+        </div>
+        <div class="review">
+            <img src="review9.png" alt="Review 9">
+            <p>¡💡💳 Increíble experiencia con Ahorro Direct! Los servicios son geniales y el ahorro es asombroso. ¡Más de lo que esperaba! 😍🔌</p>
+        </div>
+        <div class="review">
+            <img src="review10.png" alt="Review 10">
+            <p>¡💡📈 Brutal la página y el servicio post venta muy atento</p>
+        </div>
+        <div class="review">
+            <img src="review11.png" alt="Review 11">
+            <p>¡💡💖 una página que da mucha seguridad y su soporte es increíble</p>
+        </div>
     </div>
+</div>
 
-    <div class="review">
-        <img src="review2.png" alt="Usuario 12">
-        <h2>Luis Rodríguez</h2>
-        <p>La instalación de los servicios fue rápida y sin problemas.<br> Además, los precios son muy competitivos.<br> ¡No puedo estar más satisfecha con mi elección!</p>
-    </div>
-
-    <div class="review">
-        <img src="review3.png" alt="Usuario 13">
-        <h2>David López</h2>
-        <p>Ahorro Direct de Luz y Gas ha superado mis expectativas.<br> La calidad del servicio es excepcional y la atención al cliente es de primera.<br> ¡Muy recomendable!</p>
-    </div>
-
-    <div class="review">
-        <img src="review4.png" alt="Usuario 14">
-        <h2>Sofía Martínez</h2>
-        <p>Me alegra haber elegido Ahorro Direct de Luz y Gas.<br> Nunca he tenido problemas con mi suministro de energía y los precios son muy asequibles.<br> ¡Una excelente elección!</p>
-    </div>
-
-    <div class="review">
-        <img src="review5.png" alt="Usuario 15">
-        <h2>Pablo González</h2>
-        <p>Desde que me cambié a Ahorro Direct de Luz y Gas,<br> he notado un ahorro considerable en mis facturas.<br> La transición fue sencilla y el servicio es confiable.</p>
-    </div>
-
-    <div class="review">
-        <img src="review6.png" alt="Usuario 16">
-        <h2>María Pérez</h2>
-        <p>Estoy muy contenta con la atención al cliente de Ahorro Direct de Luz y Gas.<br> Siempre están dispuestos a responder a mis preguntas y resolver cualquier problema.</p>
-    </div>
-
-    <div class="review">
-        <img src="review7.png" alt="Usuario 17">
-        <h2>José Ramírez</h2>
-        <p>La calidad de los servicios de Ahorro Direct de Luz y Gas es excepcional.<br> Mi factura de energía ha disminuido considerablemente desde que me uní.</p>
-    </div>
-
-    <div class="review">
-        <img src="review8.png" alt="Usuario 18">
-        <h2>Laura Torres</h2>
-        <p>La instalación fue rápida y sin complicaciones. <br> Ahorro Direct de Luz y Gas ofrece un servicio confiable y asequible que no puedo recomendar lo suficiente.</p>
-    </div>
-
-    <div class="review">
-        <img src="review9.png" alt="Usuario 19">
-        <h2>Antonio Sánchez</h2>
-        <p>La facturación es transparente y fácil de entender.<br> Nunca he tenido sorpresas desagradables en mi factura mensual.<br> ¡Una excelente experiencia en general!</p>
-    </div>
-
-    <div class="review">
-        <img src="review10.png" alt="Usuario 20">
-        <h2>Isabel Fernández</h2>
-        <p>Ahorro Direct de Luz y Gas es la elección perfecta.<br> Me siento segura con su servicio y sé que estoy obteniendo un gran valor por mi dinero.</p>
-    </div>
-</section>
 
 
 <div id="popup" class="popup">
